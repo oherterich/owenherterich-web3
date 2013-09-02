@@ -8,12 +8,17 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/main.css">
+
     </head>
-    <body>
+    <body onload="startRandom()">
         <section>
             <h1>Hi.</h1>
             <h3>My name is Owen.</h3>
-            <h3>I am a meat-loving Irishman who likes to quote Nicolas Cage.</h3>
+            <h3>I am a</h3>
+            <button id="adLeft" onclick="changeAdjective(this)"></button><h3 id = "adjective"></h3><button id="adRight" onclick="changeAdjective(this)"></button>
+            <button id="nounLeft" onclick="changeNoun(this)"></button><h3 id = "noun"></h3><button id="nounRight" onclick="changeNoun(this)"></button>
+            <h3>who likes to</h3>
+            <button id="verbLeft" onclick="changeVerb(this)"></button><h3 id = "verb"></h3><button id="verbRight" onclick="changeVerb(this)"></button>
         </section>
         <script src="js/main.js"></script>
     </body>
