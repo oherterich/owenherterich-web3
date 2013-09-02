@@ -4,18 +4,22 @@ var verbIndex = 0;
 
 var adjective = [ "bacon-loving", "punctual", "nostalgic", "book-hoarding", "contemplative", "dramatic" ];
 var noun = [ "information designer", "GIF-addict", "Texan", "dog-lover", "creative coder", "motion graphics guy" ];
-var verb = [ "drink craft beer." , "program every once in a while.", "buy nice shoes", "visualize interesting data.", "explore the ironic", "quote Bob Dylan." ];
+var verb = [ "drink craft beer." , "program every once in a while.", "buy nice shoes.", "visualize interesting data.", "explore the ironic.", "quote Bob Dylan." ];
 
 function startRandom() {
 
-	adjectiveIndex = Math.floor(Math.random() * adjective.length-1);
-	nounIndex = Math.floor(Math.random() * noun.length-1);
-	verbIndex = Math.floor(Math.random() * verb.length-1);
+	adjectiveIndex = Math.floor(Math.random() * (adjective.length));
+	nounIndex = Math.floor(Math.random() * (noun.length));
+	verbIndex = Math.floor(Math.random() * (verb.length));
+
+	console.log(adjectiveIndex);
+	console.log(nounIndex);
+	console.log(verbIndex);
 
 
-	document.getElementById("adjective").innerHTML = adjective[adjectiveIndex];
-	document.getElementById("noun").innerHTML = noun[nounIndex];
-	document.getElementById("verb").innerHTML = verb[verbIndex];
+	document.getElementById("adjectiveWord").innerHTML = adjective[adjectiveIndex];
+	document.getElementById("nounWord").innerHTML = noun[nounIndex];
+	document.getElementById("verbWord").innerHTML = verb[verbIndex];
 }
 
 function changeAdjective(div) {
@@ -41,7 +45,7 @@ function changeAdjective(div) {
 		}
 	}
 
-	document.getElementById("adjective").innerHTML = adjective[adjectiveIndex];
+	document.getElementById("adjectiveWord").innerHTML = adjective[adjectiveIndex];
 }
 
 function changeNoun(div) {
@@ -67,7 +71,7 @@ function changeNoun(div) {
 		}
 	}
 
-	document.getElementById("noun").innerHTML = noun[nounIndex];
+	document.getElementById("nounWord").innerHTML = noun[nounIndex];
 }
 
 function changeVerb(div) {
@@ -93,5 +97,5 @@ function changeVerb(div) {
 		}
 	}
 
-	document.getElementById("verb").innerHTML = verb[verbIndex];
+	document.getElementById("verbWord").innerHTML = verb[verbIndex];
 }

@@ -93,8 +93,95 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+ *  { margin: 0; padding: 0;}
 
+ body {
+    font-family: Futura, Helvetica, Arial, sans-serif;
+ }
 
+ #wrapper {
+    width: 960px;
+    margin: 10px auto;
+ }
+
+ h1 {
+    font-size: 4.0em;
+ }
+
+ h3 {
+    display: inline;
+
+    padding: 10px 12px;
+    font-size: 3.0em;
+    font-weight: normal;
+ }
+
+ h3#adjectiveWord {
+    color: #50BC39;
+ }
+
+ h3#nounWord {
+    color: #3F81E0;
+ }
+
+ h3#verbWord {
+    color: #DD4B40;
+ }
+
+ button {
+    width: 15px;
+    height: 29px;
+    background: none;
+    border: none;
+ }
+
+ button#adLeft {
+    background-image: url("../img/buttons/adLeft.png");
+ }
+
+  button#adLeft:active {
+    background-image: url("../img/buttons/adLeftPressed.png");
+ }
+
+  button#adRight {
+    background-image: url("../img/buttons/adRight.png");
+ }
+
+   button#adRight:active {
+    background-image: url("../img/buttons/adRightPressed.png");
+ }
+
+  button#nounLeft {
+    background-image: url("../img/buttons/nounLeft.png");
+ }
+
+  button#nounLeft:active {
+    background-image: url("../img/buttons/nounLeftPressed.png");
+ }
+
+  button#nounRight {
+    background-image: url("../img/buttons/nounRight.png");
+ }
+
+  button#nounRight:active {
+    background-image: url("../img/buttons/nounRightPressed.png");
+ }
+
+  button#verbLeft {
+    background-image: url("../img/buttons/verbLeft.png");
+ }
+
+   button#verbLeft:active {
+    background-image: url("../img/buttons/verbLeftPressed.png");
+ }
+
+  button#verbRight {
+    background-image: url("../img/buttons/verbRight.png");
+ }
+
+   button#verbRight:active {
+    background-image: url("../img/buttons/verbRightPressed.png");
+ }
 
 
 
