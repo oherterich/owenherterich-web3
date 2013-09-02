@@ -97,6 +97,7 @@ textarea {
 
  body {
     font-family: Futura, Helvetica, Arial, sans-serif;
+    background: url("../img/sos.png");
  }
 
  #wrapper {
@@ -104,15 +105,19 @@ textarea {
     margin: 10px auto;
  }
 
+ section {
+    margin: 50px 0;
+ }
+
  h1 {
-    font-size: 4.0em;
+    font-size: 4.3em;
  }
 
  h3 {
     display: inline;
 
     padding: 10px 12px;
-    font-size: 3.0em;
+    font-size: 2.9em;
     font-weight: normal;
  }
 
@@ -128,13 +133,15 @@ textarea {
     color: #DD4B40;
  }
 
+ /******************** BUTTONS *********************/
+
  button {
     width: 15px;
     height: 29px;
     background: none;
     border: none;
  }
-
+ 
  button#adLeft {
     background-image: url("../img/buttons/adLeft.png");
  }
@@ -183,7 +190,17 @@ textarea {
     background-image: url("../img/buttons/verbRightPressed.png");
  }
 
+ button#randomButton {
+    width: 372px;
+    height: 72px;
+    background-image: url("../img/buttons/random.png");
+ }
 
+  button#randomButton:active {
+    width: 372px;
+    height: 72px;
+    background-image: url("../img/buttons/randomPressed.png");
+ }
 
 
 

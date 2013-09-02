@@ -10,9 +10,9 @@
         <link rel="stylesheet" href="css/main.css">
 
     </head>
-    <body onload="startRandom()">
+    <body onload="setRandom()">
         <div id = "wrapper">
-            <section>
+            <section id="main">
                 <h1>Hi.</h1>
                 <h3>My name is Owen.</h3>
                 <h3>I am a</h3>
@@ -26,6 +26,9 @@
                 <article id="verb">
                     <button id="verbLeft" onclick="changeVerb(this)" src="img/buttons/verbLeft.png"></button><h3 id = "verbWord"></h3><button id="verbRight" onclick="changeVerb(this)" src="img/buttons/verbRight.png"></button>
                 </article>
+            </section>
+            <section id="random">
+                <button id="randomButton" onclick="setRandom()"></button>
             </section>
         </div>
         <script src="js/main.js"></script>

@@ -6,16 +6,11 @@ var adjective = [ "bacon-loving", "punctual", "nostalgic", "book-hoarding", "con
 var noun = [ "information designer", "GIF-addict", "Texan", "dog-lover", "creative coder", "motion graphics guy" ];
 var verb = [ "drink craft beer." , "program every once in a while.", "buy nice shoes.", "visualize interesting data.", "explore the ironic.", "quote Bob Dylan." ];
 
-function startRandom() {
+function setRandom() {
 
 	adjectiveIndex = Math.floor(Math.random() * (adjective.length));
 	nounIndex = Math.floor(Math.random() * (noun.length));
 	verbIndex = Math.floor(Math.random() * (verb.length));
-
-	console.log(adjectiveIndex);
-	console.log(nounIndex);
-	console.log(verbIndex);
-
 
 	document.getElementById("adjectiveWord").innerHTML = adjective[adjectiveIndex];
 	document.getElementById("nounWord").innerHTML = noun[nounIndex];
