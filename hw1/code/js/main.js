@@ -2,9 +2,9 @@ var adjectiveIndex = 0;
 var nounIndex = 0;
 var verbIndex = 0;
 
-var adjective = [ "bacon-loving", "punctual", "nostalgic", "book-hoarding", "contemplative", "dramatic" ];
-var noun = [ "information designer", "GIF-addict", "Texan", "dog-lover", "creative coder", "motion graphics guy" ];
-var verb = [ "drink craft beer." , "program every once in a while.", "buy nice shoes.", "visualize interesting data.", "explore the ironic.", "quote Bob Dylan." ];
+var adjective = [ "stubborn" , "innovative", "bacon-appreciating", "punctual", "nostalgic", "book-hoarding", "contemplative", "drama-loving" ];
+var noun = [ "folk music connoiseur", "Mad Men fan", "information designer", "GIF-addict", "Texan", "dog-lover", "creative coder", "motion graphics guy" ];
+var verb = [ "make things pretty." , "solve problems.", "drink craft beer." , "program every once in a while.", "buy nice shoes.", "visualize interesting data.", "explore the ironic.", "quote Bob Dylan." ];
 
 function setRandom() {
 
