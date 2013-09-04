@@ -20,8 +20,6 @@ function setRandom() {
 function changeAdjective(div) {
 	var id = div.id;
 
-	console.log(adjectiveIndex);
-
 	if (id == "adLeft") {
 		if (adjectiveIndex == 0) {
 			adjectiveIndex = adjective.length-1;
@@ -40,13 +38,21 @@ function changeAdjective(div) {
 		}
 	}
 
+	if (id == "adjectiveText") {
+		console.log(adjectiveIndex);
+		if (adjectiveIndex == adjective.length-1) {
+			adjectiveIndex = 0;
+		}
+		else {
+			adjectiveIndex++;
+		}
+	}
+
 	document.getElementById("adjectiveWord").innerHTML = adjective[adjectiveIndex];
 }
 
 function changeNoun(div) {
 	var id = div.id;
-
-	console.log(nounIndex);
 
 	if (id == "nounLeft") {
 		if (nounIndex == 0) {
@@ -66,13 +72,20 @@ function changeNoun(div) {
 		}
 	}
 
+	if (id == "nounWord") {
+		if (nounIndex == noun.length-1) {
+			nounIndex = 0;
+		}
+		else {
+			nounIndex++;
+		}
+	}
+
 	document.getElementById("nounWord").innerHTML = noun[nounIndex];
 }
 
 function changeVerb(div) {
 	var id = div.id;
-
-	console.log(verbIndex);
 
 	if (id == "verbLeft") {
 		if (verbIndex == 0) {
@@ -84,6 +97,15 @@ function changeVerb(div) {
 	}
 
 	if (id == "verbRight") {
+		if (verbIndex == verb.length-1) {
+			verbIndex = 0;
+		}
+		else {
+			verbIndex++;
+		}
+	}
+
+	if (id == "verbWord") {
 		if (verbIndex == verb.length-1) {
 			verbIndex = 0;
 		}
