@@ -38,7 +38,7 @@ function changeAdjective(div) {
 		}
 	}
 
-	if (id == "adjectiveText") {
+	if (id == "adjectiveWord") {
 		console.log(adjectiveIndex);
 		if (adjectiveIndex == adjective.length-1) {
 			adjectiveIndex = 0;
