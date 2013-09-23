@@ -1,0 +1,94 @@
+* { margin: 0; padding: 0 }
+
+@font-face {
+    font-family: 'Fairview';
+    src: url('font/Fairview_Regular.otf');
+}
+
+@font-face {
+    font-family: 'Tangerine';
+    src: url('font/Tangerine_Regular.ttf');
+}
+
+body {
+	width: 100%;
+	height: 100%;
+}
+
+h1 {
+	font-family: 'Fairview', Futura, Helvetica, Arial, sans-serif;
+}
+
+h2 {
+	font-family: 'Tangerine', Georgia, serif;
+}
+
+.scrollbutton {
+	display: block;
+	width: 90px;
+	height: 51px;
+	background: url("../img/scrollbutton_large.png");
+	margin: 2% auto 0 auto;
+}
+
+.button {
+	width: 16.3%;
+	height: 28%;
+	background: url("../img/button_large.png") center center no-repeat;
+	display: inline-block;
+	opacity: 0.8;
+
+	&:active {
+		background: url("../img/button_pressed_large.png") center center no-repeat;
+	}
+}
+
+.slide {
+	width: 100%;
+	height: 100%;
+}
+
+#slide1 {
+	background: url("../img/title_large.jpg") center top;
+		
+		h1 {
+			font-size: 23.0em;
+			color: rgba(255, 255, 255, 0.8);
+			text-align: center;
+			padding-top: 16%;
+		}
+
+		h2 {
+			font-size: 5.0em;
+			font-weight: normal;
+			color: rgba(255, 255, 255, 0.8);
+			text-align: center;
+			margin-top: -3%;
+		}
+}
+
+#slide2 {
+	background: url("../img/soundboard_large.jpg") center top;
+
+	article {
+		width: 75%;
+		height: 75%;
+		margin: 3% auto 0 auto;
+	}
+
+	h1, h2 {
+		color: rgba(255, 255, 255, 0.8);
+		text-align: center;
+	}
+
+	h1 {
+		font-size: 5.0em;
+		padding-top: 4.0%;
+	}
+
+	h2 {
+		font-size: 2.0em;
+		font-weight: normal;
+		margin-top: -0.3%;
+	}
+}
