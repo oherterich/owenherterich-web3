@@ -25,10 +25,12 @@ h2 {
 
 .scrollbutton {
 	display: block;
+	position: absolute;
+	left: 48%;
+	bottom: 3%;
 	width: 90px;
 	height: 51px;
-	background: url("../img/scrollbutton_large.png");
-	margin: 2% auto 0 auto;
+	background: url("../img/scrollbutton_large.png") center center no-repeat;
 }
 
 .button {
@@ -55,7 +57,7 @@ h2 {
 			font-size: 23.0em;
 			color: rgba(255, 255, 255, 0.8);
 			text-align: center;
-			padding-top: 16%;
+			padding-top: 13%;
 		}
 
 		h2 {
@@ -77,7 +79,7 @@ h2 {
 	}
 
 	h1, h2 {
-		color: rgba(255, 255, 255, 0.8);
+		color: rgba(255, 255, 255, 0.7);
 		text-align: center;
 	}
 

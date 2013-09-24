@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){e(".button").each(function(){e(this).click(function(){e(this).find("audio")[0].play()})})});$(".scrollbutton").click(function(){$("html, body").animate({scrollTop:$($(this).attr("href")).offset().top},500);return!1});
