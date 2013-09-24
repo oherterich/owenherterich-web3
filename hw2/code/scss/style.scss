@@ -1,13 +1,13 @@
 * { margin: 0; padding: 0 }
 
 @font-face {
-    font-family: 'Fairview';
-    src: url('font/Fairview_Regular.otf');
+	font-family: 'Fairview';
+	src: url('font/Fairview_Regular.otf');
 }
 
 @font-face {
-    font-family: 'Tangerine';
-    src: url('font/Tangerine_Regular.ttf');
+	font-family: 'Tangerine';
+	src: url('font/Tangerine_Regular.ttf');
 }
 
 body {
@@ -53,21 +53,21 @@ h2 {
 
 #slide1 {
 	background: url("../img/title_large.jpg") center top;
-		
-		h1 {
-			font-size: 23.0em;
-			color: rgba(255, 255, 255, 0.8);
-			text-align: center;
-			padding-top: 13%;
-		}
 
-		h2 {
-			font-size: 5.0em;
-			font-weight: normal;
-			color: rgba(255, 255, 255, 0.8);
-			text-align: center;
-			margin-top: -3%;
-		}
+	h1 {
+		font-size: 23.0em;
+		color: rgba(255, 255, 255, 0.8);
+		text-align: center;
+		padding-top: 13%;
+	}
+
+	h2 {
+		font-size: 5.0em;
+		font-weight: normal;
+		color: rgba(255, 255, 255, 0.8);
+		text-align: center;
+		margin-top: -2%;
+	}
 }
 
 #slide2 {
@@ -114,4 +114,135 @@ h2 {
 		font-weight: normal;
 		margin-top: -0.3%;
 	}
+}
+
+/***********************************************/
+/* iPads (portrait and landscape) ----------- */
+/**********************************************/
+
+@media screen and (max-width : 1024px) {
+
+	.scrollbutton {
+	width: 40px;
+	height: 23px;
+	background: url("../img/scrollbutton_tablet.png") center center no-repeat;
+}
+
+.button {
+	width: 16.0%;
+	height: 22%;
+	background: url("../img/button_tablet.png") center center no-repeat;
+
+	&:active {
+		background: url("../img/button_pressed_tablet.png") center center no-repeat;
+	}
+}
+
+.slide {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+#slide1 {
+	background: url("../img/title_large.jpg") center top;
+
+	h1 {
+		font-size: 19.0em;
+		padding-top: 20%;
+	}
+
+	h2 {
+		font-size: 4.0em;
+	}
+}
+
+#slide2 {
+	background: url("../img/quote_large.jpg") center top;
+
+	h2 {
+		font-size: 4.5em;
+		padding-top: 25%;
+	}
+}
+
+#slide3 {
+	background: url("../img/soundboard_large.jpg") center top;
+
+	h1 {
+		font-size: 6.0em;
+		padding-top: 7.0%;
+	}
+}
+
+}
+
+/****************************************************/
+/* Smartphones (portrait and landscape) ----------- */
+/****************************************************/
+
+@media screen and (max-width : 480px) {
+
+	.scrollbutton {
+	width: 20px;
+	height: 11px;
+	background: url("../img/scrollbutton_mobile.png") center center no-repeat;
+}
+
+.button {
+	width: 15%;
+	height: 15%;
+	background: url("../img/button_mobile.png") center center no-repeat;
+
+	&:active {
+		background: url("../img/button_pressed_mobile.png") center center no-repeat;
+	}
+}
+
+#slide1 {
+	background: url("../img/title_mobile.jpg") center top;
+
+	h1 {
+		font-size: 12.0em;
+		padding-top: 25%;
+	}
+
+	h2 {
+		font-size: 4.0em;
+	}
+}
+
+#slide2 {
+	background: url("../img/quote_mobile.jpg") center top;
+
+	h2 {
+		font-size: 3.0em;
+		padding-top: 40%;
+	}
+
+	h3 {
+		font-size:1.6em;
+	}
+}
+
+#slide3 {
+	background: url("../img/soundboard_mobile.jpg") center top;
+
+	article {
+		width: 75%;
+		height: 75%;
+		margin: 3% auto 0 auto;
+	}
+
+	h1, h2 {
+		color: rgba(255, 255, 255, 0.7);
+		text-align: center;
+	}
+
+	h1 {
+		font-size: 5.0em;
+		padding-top: 8.0%;
+	}
+}
+
 }
