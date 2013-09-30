@@ -1,0 +1,84 @@
+$lightgrey: #dbdbdb;
+$darkgrey: #656565;
+
+* { margin: 0; padding: 0 }
+
+@font-face {
+	font-family: 'Letter Gothic';
+	src: url('font/LetterGothicStd.otf');
+}
+
+@font-face {
+	font-family: 'Letter Gothic Bold';
+	src: url('font/LetterGothicStd-Bold.otf');
+}
+
+@font-face {
+	font-family: 'Letter Gothic Slanted';
+	src: url('font/LetterGothicStd-Slanted.otf');
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	font-family: 'Letter Gothic', Letter Gothic, Futura, Helvetica, sans-serif;
+}
+
+#sidebar {
+	width: 320px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	background-color: $lightgrey;
+
+	h1 {
+		font-family: 'Letter Gothic Bold', Letter Gothic, Futura, Helvetica, sans-serif;
+		font-size: 1.7rem;
+		font-weight: normal;
+		margin: 10% auto;
+		padding: 10% 0;
+		width: 250px;
+		text-align: center;
+		border-bottom: 1px solid $darkgrey;
+
+		a {
+			&:link {
+				text-decoration: none;
+				color: $darkgrey;
+			}
+		}
+	}
+
+	h2 {
+		font-size: 1.4rem;
+		font-weight: normal;
+		margin: 0 auto;
+		padding: 5% 0;
+		width: 100%;
+		text-align: center;
+
+		&:hover {
+			background-color: #fff;
+			transition: background-color 0.7s;
+			-webkit-transition: background-color 0.7s;
+		}
+		&:active {
+			background-color: #fff;
+		}
+
+		a {
+			&:link {
+				text-decoration: none;
+				color: $darkgrey;
+			}
+		}
+	}
+
+	footer {
+		position: absolute;
+		bottom: 2%;
+		font-size: 0.6rem;
+		text-align: center;
+		width: 100%;
+	}
+}
