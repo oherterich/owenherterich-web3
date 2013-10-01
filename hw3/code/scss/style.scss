@@ -171,7 +171,7 @@ body {
 	background: pink;
 }
 
-#story {
+#text {
 	margin: 20px 20px 20px 340px;	
 	max-width: 600px;
 
@@ -203,5 +203,17 @@ body {
 
 		a:visited {
 		color: $darkgrey;
+	}
+}
+
+#text #contact {
+	margin: 10px 0 20px 0;
+
+	h4 {
+		display: inline;
+	}
+
+	a {
+		margin-right: 20px;
 	}
 }

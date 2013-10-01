@@ -129,24 +129,31 @@ body {
 .is-noCover {
   background: pink; }
 
-#story {
+#text {
   margin: 20px 20px 20px 340px;
   max-width: 600px; }
-  #story h1 {
+  #text h1 {
     font-size: 2.3rem; }
-  #story h2 {
+  #text h2 {
     font-family: 'Letter Gothic Slanted', Letter Gothic, Futura, Helvetica, sans-serif;
     font-size: 1.2rem;
     padding-bottom: 5px;
     border-bottom: 1px solid #656565; }
-  #story h3 {
+  #text h3 {
     font-family: 'Letter Gothic Bold', Letter Gothic, Futura, Helvetica, sans-serif;
     font-size: 1.0rem;
     margin: 15px 0 5px 0; }
-  #story p {
+  #text p {
     font-size: 0.8rem;
     padding: 5px 15px; }
-  #story a:link {
+  #text a:link {
     color: #656565; }
-  #story a:visited {
+  #text a:visited {
     color: #656565; }
+
+#text #contact {
+  margin: 10px 0 20px 0; }
+  #text #contact h4 {
+    display: inline; }
+  #text #contact a {
+    margin-right: 20px; }
