@@ -10,42 +10,64 @@
 
     <link rel="stylesheet" href="css/style.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="js/main.js"></script>
 </head>
 <body>
 	<section id="sidebar">
 		<h1><a href="#">To See &amp; Hear</a></h1>
 		<nav>
-			<h2><a href="#">Work</a></h2>
-			<h2><a href="#">Story</a></h2>
-			<h2><a href="#">Contact</a></h2>
+			<a href="#"><h2 id="activelink">Work</h2></a>
+			<a href="story.html"><h2>Story</h2></a>
+			<a href="contact.html"><h2>Contact</h2></a>
 		</nav>
-		<footer>
+		<article>
 			<p>Owen Herterich, 2013</p>
-		</footer>
+		</article>
 	</section>
 	<section id="main">
 		<div class="square">
-			<img src="img/brotherskaramazov_circle.jpg" alt="Brothers Karamazov">
+			<img src="img/brotherskaramazov.jpg" alt="Brothers Karamazov">
+			<div class="cover">
+				<h3>The Brothers Karamazov</h3>
+				<h4>Fyodor Dostoyevsky</h4>
+			</div>
 		</div>
 		<div class="square">
-			<img src="img/brotherskaramazov_circle.jpg" alt="Brothers Karamazov">
+			<img src="img/1984.jpg" alt="Nineteen Eighty-Four">
+			<div class="cover">
+				<h3>Nineteen Eighty-Four</h3>
+				<h4>George Orwell</h4>
+			</div>
 		</div>
 		<div class="square">
-			<img src="img/brotherskaramazov_circle.jpg" alt="Brothers Karamazov">
+			<img src="img/catcher.jpg" alt="The Catcher in the Rye">
+			<div class="cover">
+				<h3>The Catcher in the Rye</h3>
+				<h4>Fyodor Dostoyevsky</h4>
+			</div>
 		</div>
 		<div class="square">
-			<img src="img/brotherskaramazov_circle.jpg" alt="Brothers Karamazov">
+			<img src="img/bravenewworld.jpg" alt="Brave New World">
+			<div class="cover">
+				<h3>Brave New World</h3>
+				<h4>Aldous Huxley</h4>
+			</div>
 		</div>
 		<div class="square">
-			<img src="img/brotherskaramazov_circle.jpg" alt="Brothers Karamazov">
+			<img src="img/americanpastoral.jpg" alt="American Pastoral">
+			<div class="cover">
+				<h3>American Pastoral</h3>
+				<h4>Philip Roth</h4>
+			</div>
 		</div>
 		<div class="square">
-			<img src="img/brotherskaramazov_circle.jpg" alt="Brothers Karamazov">
+			<img src="img/canteburytales.jpg" alt="Brothers Karamazov">
+			<div class="cover">
+				<h3>The Cantebury Tales</h3>
+				<h4>Geoffrey Chaucer</h4>
+			</div>
 		</div>
-	<div id="backtotop">
-		<p>Back to top</p>
-	</div>
 	</section>
+	<script src="js/main-ck.js"></script>
 </body>
+
 </html>
