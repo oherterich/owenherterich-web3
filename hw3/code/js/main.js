@@ -8,13 +8,19 @@ for (var i = 0; i < square.length; i++) {
 	e.addEventListener('click', function(evt) {
 		evt.preventDefault();
 		evt.stopPropagation();
+
 		this.classList.toggle("is-large");
 		this.classList.toggle("square");
+
 		var c = this.querySelector(".coveranchor");
 		console.log(c);
 		c.classList.toggle("cover");
 		c.classList.toggle("is-noCover");
-		console.log(c);
+
+		var q = document.querySelector("#quick");
+		q.className = "is-hidden";
+
+
 	});
 }
 

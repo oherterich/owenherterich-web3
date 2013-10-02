@@ -75,6 +75,18 @@ body {
 #main {
   margin: 20px 20px 20px 340px; }
 
+#quick {
+  font-size: 0.9rem;
+  padding: 2%;
+  width: 75%;
+  margin: 0 auto; }
+
+.bold {
+  font-family: 'Letter Gothic Bold', 'Letter Gothic', Letter Gothic, Futura, Helvetica, sans-serif; }
+
+.is-hidden {
+  display: none; }
+
 .square {
   position: relative;
   width: 45%;
@@ -158,3 +170,52 @@ body {
     display: inline; }
   #text #contact a {
     margin-right: 20px; }
+
+/***********************************************/
+/* iPads (portrait and landscape) ----------- */
+/**********************************************/
+@media screen and (max-width: 1024px) {
+  #sidebar {
+    width: 240px; }
+    #sidebar h1 {
+      font-size: 1.5rem;
+      width: 200px; }
+
+  #main {
+    margin: 10px 10px 10px 240px; }
+
+  .cover {
+    opacity: 0.7; }
+    .cover h3 {
+      font-size: 1.0rem; }
+    .cover h4 {
+      font-size: 0.9rem; }
+
+  #text {
+    margin: 15px 15px 15px 260px; } }
+/****************************************************/
+/* Smartphones (portrait and landscape) ----------- */
+/****************************************************/
+@media screen and (min-width: 320px) and (max-width: 568px) {
+  #sidebar {
+    position: relative;
+    width: 320px;
+    height: 480px;
+    margin: 0; }
+
+  #main {
+    margin: 20px 0; }
+
+  .square {
+    margin: 0 auto;
+    width: 100%; }
+
+  .cover {
+    top: 2%;
+    width: 93%;
+    height: 95%; }
+
+  #text {
+    margin: 0;
+    margin-top: 20px;
+    padding: 10px; } }
