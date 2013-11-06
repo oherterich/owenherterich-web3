@@ -281,10 +281,15 @@ body {
 		width: 320px;
 		height: 480px;
 		margin: 0;
+		margin-top: -32px;
 	}
 
 	#main {
 		margin: 20px 0;
+	}
+
+	#quick {
+		padding: 40px 0;
 	}
 
 	.square {
