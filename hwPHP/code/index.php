@@ -65,7 +65,8 @@
   	global $error;
 
     //Let's get that data.
-  	$json_string = file_get_contents("http://api.wunderground.com/api/b133584ee6715dbc/conditions/q/" . $zip . ".json");
+    $key = "ENTER YOUR KEY HERE";
+  	$json_string = file_get_contents("http://api.wunderground.com/api/" . $key . "/conditions/q/" . $zip . ".json");
   	$parsed_json = json_decode($json_string);
   	$error = $parsed_json->{'response'}->{'error'}->{'type'};
 
