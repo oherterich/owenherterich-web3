@@ -2,7 +2,12 @@
 
 @font-face {
 	font-family: Futura-Normal;
-	src: url("font/FuturaLT.ttf");
+	src: url("fooont/FuturaLT.ttf");
+}
+
+@font-face {
+	font-family: Futura-ExtraBold;
+	src: url("font/FuturaLT-CondensedExtraBold.ttf");
 }
 
 body {
@@ -19,6 +24,11 @@ h1 {
 	font-weight: normal;
 	font-size: 2.0rem;
 }
+
+h2 {
+	font-weight: normal;
+}
+
 
 #form {
 	width: 40%;
@@ -57,13 +67,14 @@ h1 {
 
 #weather {
 	width: 100%;
+}
 
-	margin-top: 5%;
-
-	h1 {
+#weather-type {
+	font-family: Futura-ExtraBold, Futura-Normal, Futura, Helvetica, Arial, sans-serif;
+		color: #f2f2f2;
+		font-size: 17.0em;
 		text-align: center;
-		font-size: 1.3rem;
-	}
+
 }
 
 #location {
@@ -82,9 +93,10 @@ h1 {
 #form-small {
 	width: 40%;
 	margin: 0 auto;
-	margin-top: 5%;
+	margin-top: 1%;
 	text-align: center;
 	font-size: 0.8rem;
+	font-weight: normal;
 
 	input {
 		display: block;
