@@ -11,8 +11,16 @@ body {
   margin: 0 auto;
   background-color: #eee; }
 
+a:link, a:visited {
+  color: #045447;
+  text-decoration: none; }
+
+a:hover {
+  color: #078570; }
+
 #add-messages {
-  padding: 2%; }
+  padding: 2%;
+  width: 60%; }
   #add-messages h1 {
     color: #045447;
     font-size: 1.6rem;
@@ -22,6 +30,8 @@ body {
     width: 52%; }
   #add-messages p {
     font-size: 0.9rem; }
+  #add-messages h4 {
+    padding: 1% 0; }
 
 form {
   margin-top: 2%; }
