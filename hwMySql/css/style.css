@@ -11,24 +11,83 @@ body {
   margin: 0 auto;
   background-color: #eee; }
 
+#add-messages {
+  padding: 2%; }
+  #add-messages h1 {
+    color: #045447;
+    font-size: 1.6rem;
+    padding-bottom: 0.5%;
+    margin-bottom: 1%;
+    border-bottom: 1px solid #078570;
+    width: 52%; }
+  #add-messages p {
+    font-size: 0.9rem; }
+
 form {
-  padding: 5%; }
+  margin-top: 2%; }
+  form h3 {
+    display: inline;
+    margin-right: 1%;
+    font-size: 1.0rem;
+    color: #045447; }
+  form input {
+    margin-right: 2%; }
 
 #submit {
-  display: block;
-  margin: 1% 0; }
+  background: #045447;
+  border: none;
+  padding: 0.5% 0.8%;
+  color: #eee;
+  border-radius: 2px;
+  transition: background 0.5s; }
+  #submit:hover {
+    background: #078570;
+    transition: background 0.5s; }
+
+h2 {
+  padding: 0 2%;
+  font-size: 1.4rem; }
 
 table {
   width: 100%;
-  padding: 2%; }
+  padding: 1% 2%; }
   table tr:hover {
     background-color: #f5f5f5; }
   table th {
     padding: 1%;
     text-align: left;
     border-bottom: #078570 2px solid;
-    font-size: 1.2rem; }
+    font-size: 1.1rem; }
   table td {
+    font-size: 0.9rem;
     padding: 1%;
     text-align: left;
     border-bottom: #aaa 1px solid; }
+
+#alert {
+  display: block;
+  width: 80%;
+  margin: 2% auto;
+  text-align: center;
+  clear: both;
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: red; }
+
+#main-table {
+  width: 50%;
+  float: left; }
+
+#common-codes-table {
+  width: 50%;
+  margin-left: 50%; }
+
+#common-numbers-table {
+  width: 50%;
+  margin-left: 50%; }
+
+footer {
+  clear: both;
+  font-size: 0.7em;
+  padding: 10px;
+  text-align: center; }
