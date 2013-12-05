@@ -6,7 +6,8 @@ var pointLight, mainCube;
 
 var smallCubes = new Array();
 
-var centerOrbit = new Array();
+var centerOrbit = new Array(); //Main orbits for the planets
+var moonOrbit;
 
 //To move light
 var theta = 0;
@@ -57,7 +58,7 @@ function init() {
 		mainCube.add( centerOrbit[i] );
 	}
 
-	pointLight = new THREE.PointLight(0xFFFFFF);
+	pointLight = new THREE.PointLight(0xFFFFFF, 2.0);
 
 	pointLight.position.x = 10;
 	pointLight.position.y = 100;
@@ -65,13 +66,26 @@ function init() {
 
 	scene.add( pointLight );
 
+	hemiLight = new THREE.HemisphereLight(0xFFFFFF);
+	//scene.add(hemiLight);
+
 	for (var i = 0; i < 11; i++) {
-		var smallCubeGeometry = new THREE.SphereGeometry(Math.random() * 25 + 25, 32, 32);
+		var smallCubeGeometry = new THREE.SphereGeometry(Math.random() * 25 + 25, 64, 64);
 
 		var c = new THREE.Color( 0xFFFFFF );
 		c.setRGB( Math.random(), Math.random(), Math.random() );
-		var smallCubeTexture = THREE.ImageUtils.loadTexture("moon.png");
-		var smallCubeMaterial = new THREE.MeshLambertMaterial( { map: smallCubeTexture, color: c });
+
+		var smallCubeTexture = THREE.ImageUtils.loadTexture("img/textures/moon.png");
+		smallCubeTexture.repeat.set( 4, 2 );
+		smallCubeTexture.wrapS = smallCubeTexture.wrapT = THREE.RepeatWrapping;
+		smallCubeTexture.anisotropy = 16;
+
+		var smallCubeBump = THREE.ImageUtils.loadTexture("img/textures/moon_bump.png");
+		smallCubeBump.repeat.set( 4, 2 );
+		smallCubeBump.wrapS = smallCubeBump.wrapT = THREE.RepeatWrapping;
+		smallCubeBump.anisotropy = 16;
+
+		var smallCubeMaterial = new THREE.MeshPhongMaterial( { map: smallCubeTexture, bump: smallCubeBump, bumpScale: 1000, color: c });
 		var smallCube = new THREE.Mesh( smallCubeGeometry, smallCubeMaterial );
 
 		smallCube.position.set( getRandomInt(250, 500), getRandomInt(250, 500), 0);
@@ -79,6 +93,17 @@ function init() {
 
 		centerOrbit[i].add( smallCubes[i] );
 	}
+
+	moonOrbit = new THREE.Object3D();
+	smallCubes[0].add( moonOrbit );
+
+	var moonGeometry = new THREE.SphereGeometry( 10, 32, 32);
+	var moonMaterial = new THREE.MeshPhongMaterial( { color: 0xFF0000 } );
+	var moon = new THREE.Mesh( moonGeometry, moonMaterial );
+	moon.position.set( 50, 50, 0);
+
+	moonOrbit.add( moon );
+
 
 	//The following code lets us draw axes in the scene
 	//Code from http://rohitghatol.com/?p=388
@@ -160,11 +185,14 @@ function animate() {
 
 	//pointLight.position.x = Math.cos(theta) * 800;
 	//pointLight.position.z = Math.sin(theta) * 800;
-	theta += 0.005;
 
 	for (var i = 0; i < smallCubes.length; i++) {
 		centerOrbit[i].rotation.z = theta;
 	}
+
+	moonOrbit.rotation.z = theta*6.0;
+
+	theta += 0.005;
 
     requestAnimationFrame(animate);
  
