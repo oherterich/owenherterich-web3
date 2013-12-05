@@ -39,14 +39,14 @@ function init() {
 
 	scene.add( camera );
 
-	camera.position.z = 300;
+	camera.position.z = 1000;
 
 	// Add OrbitControls so that we can pan around with the mouse.
 	controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 	//Create basic geometry and material for a cube. Position it and add to the scene.
-	var mainCubeGeometry = new THREE.CubeGeometry(100, 100, 100, 10, 10, 10);
-	var mainCubeMaterial = new THREE.MeshLambertMaterial({ color: 0xFF0000 });
+	var mainCubeGeometry = new THREE.SphereGeometry(25, 32, 32);
+	var mainCubeMaterial = new THREE.MeshLambertMaterial({ color: 0x666666 });
     mainCube = new THREE.Mesh( mainCubeGeometry, mainCubeMaterial );
 	scene.add( mainCube );
 
@@ -98,7 +98,7 @@ function init() {
 	smallCubes[0].add( moonOrbit );
 
 	var moonGeometry = new THREE.SphereGeometry( 10, 32, 32);
-	var moonMaterial = new THREE.MeshPhongMaterial( { color: 0xFF0000 } );
+	var moonMaterial = new THREE.MeshPhongMaterial( { color: 0x660000 } );
 	var moon = new THREE.Mesh( moonGeometry, moonMaterial );
 	moon.position.set( 50, 50, 0);
 
@@ -176,7 +176,7 @@ function init() {
 	     return axes;
 	}
 
-	scene.add(createAxes(500));
+	//scene.add(createAxes(500));
 
 
 }
