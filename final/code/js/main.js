@@ -4,7 +4,11 @@ var width = window.innerWidth,
 var renderer, scene, camera, controls;
 var pointLight, mainCube;
 
-var smallCubes = new Array();
+var starMaterial, starGeometry;
+var starColors = new Array();
+var starOffsets = new Array();
+
+var planets = new Array();
 
 var centerOrbit = new Array(); //Main orbits for the planets
 var moonOrbit;
@@ -69,33 +73,68 @@ function init() {
 	hemiLight = new THREE.HemisphereLight(0xFFFFFF);
 	//scene.add(hemiLight);
 
+	/*******ADD PARTICLES********/
+	starGeometry = new THREE.Geometry();
+
+	sprite = THREE.ImageUtils.loadTexture( "img/star.png" );
+
+	for ( i = 0; i < 10000; i ++ ) {
+
+		var vertex = new THREE.Vector3();
+		vertex.x = 5000 * Math.random() - 2500;
+		vertex.y = 5000 * Math.random() - 2500;
+		vertex.z = 5000 * Math.random() - 2500;
+
+		starGeometry.vertices.push( vertex );
+
+		color = new THREE.Color(0xFFFFFF);
+		color.setHSL(0, 0, 1.0);
+		starColors.push( color );
+
+		offset = Math.random() * Math.PI * 2;
+		starOffsets.push( offset );
+
+	}
+
+	starGeometry.colors = starColors;
+
+	console.log(starGeometry);
+
+	starMaterial = new THREE.ParticleSystemMaterial( { size: 3, sizeAttenuation: false, map: sprite, vertexColors: true, transparent: true } );
+	starMaterial.color.setHSL( 1.0, 0.0, 0.9 );
+
+	particles = new THREE.ParticleSystem( starGeometry, starMaterial );
+	particles.sortParticles = true;
+	scene.add( particles );
+
+
 	for (var i = 0; i < 11; i++) {
-		var smallCubeGeometry = new THREE.SphereGeometry(Math.random() * 25 + 25, 64, 64);
+		var planetGeometry = new THREE.SphereGeometry(Math.random() * 25 + 25, 64, 64);
 
 		var c = new THREE.Color( 0xFFFFFF );
 		c.setRGB( Math.random(), Math.random(), Math.random() );
 
-		var smallCubeTexture = THREE.ImageUtils.loadTexture("img/textures/moon.png");
-		smallCubeTexture.repeat.set( 4, 2 );
-		smallCubeTexture.wrapS = smallCubeTexture.wrapT = THREE.RepeatWrapping;
-		smallCubeTexture.anisotropy = 16;
+		var planetTexture = THREE.ImageUtils.loadTexture("img/textures/moon.png");
+		planetTexture.repeat.set( 4, 2 );
+		planetTexture.wrapS = planetTexture.wrapT = THREE.RepeatWrapping;
+		planetTexture.anisotropy = 16;
 
-		var smallCubeBump = THREE.ImageUtils.loadTexture("img/textures/moon_bump.png");
-		smallCubeBump.repeat.set( 4, 2 );
-		smallCubeBump.wrapS = smallCubeBump.wrapT = THREE.RepeatWrapping;
-		smallCubeBump.anisotropy = 16;
+		var planetBump = THREE.ImageUtils.loadTexture("img/textures/moon_bump.png");
+		planetBump.repeat.set( 4, 2 );
+		planetBump.wrapS = planetBump.wrapT = THREE.RepeatWrapping;
+		planetBump.anisotropy = 16;
 
-		var smallCubeMaterial = new THREE.MeshPhongMaterial( { map: smallCubeTexture, bump: smallCubeBump, bumpScale: 1000, color: c });
-		var smallCube = new THREE.Mesh( smallCubeGeometry, smallCubeMaterial );
+		var planetMaterial = new THREE.MeshPhongMaterial( { map: planetTexture, bump: planetBump, bumpScale: 1000, color: c });
+		var planet = new THREE.Mesh( planetGeometry, planetMaterial );
 
-		smallCube.position.set( getRandomInt(250, 500), getRandomInt(250, 500), 0);
-		smallCubes.push( smallCube );
+		planet.position.set( getRandomInt(250, 500), getRandomInt(250, 500), 0);
+		planets.push( planet );
 
-		centerOrbit[i].add( smallCubes[i] );
+		centerOrbit[i].add( planets[i] );
 	}
 
 	moonOrbit = new THREE.Object3D();
-	smallCubes[0].add( moonOrbit );
+	planets[0].add( moonOrbit );
 
 	var moonGeometry = new THREE.SphereGeometry( 10, 32, 32);
 	var moonMaterial = new THREE.MeshPhongMaterial( { color: 0x660000 } );
@@ -186,8 +225,16 @@ function animate() {
 	//pointLight.position.x = Math.cos(theta) * 800;
 	//pointLight.position.z = Math.sin(theta) * 800;
 
-	for (var i = 0; i < smallCubes.length; i++) {
+	for (var i = 0; i < planets.length; i++) {
 		centerOrbit[i].rotation.z = theta;
+	}
+
+	for (var i = 0; i < starGeometry.colors.length; i++) {
+		var brightness = Math.sin(theta * 4 + starOffsets[i]);
+		var newBrightness = map_range(brightness, -1, 1, 0.3, 1.0);
+		starGeometry.colors[i].r = newBrightness;
+		starGeometry.colors[i].g = newBrightness;
+		starGeometry.colors[i].b = newBrightness;
 	}
 
 	moonOrbit.rotation.z = theta*6.0;
@@ -208,6 +255,11 @@ function animate() {
  */
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+//Simple function to map values (similar to Processing's map() function)
+function map_range(value, low1, high1, low2, high2) {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
 
 init();
