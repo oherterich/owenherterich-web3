@@ -143,7 +143,9 @@ function init() {
 	var discText = THREE.ImageUtils.loadTexture("img/textures/spacejam/spacejam_disc.png");
 	var discMat = new THREE.MeshPhongMaterial({ map: discText });
 
-	var logoFrontMat = new THREE.MeshPhongMaterial({ color: 0x12544C, ambient: 0x12544C, specular:0x555555, shininess: 100, reflectivity: 100 });
+	var frontText = new THREE.ImageUtils.loadTexture("img/textures/spacejam/spacejam_front.png");
+
+	var logoFrontMat = new THREE.MeshPhongMaterial({ map: frontText, ambient: 0x12544C, specular:0x333333, shininess: 100, reflectivity: 100 });
 	var logoOutlineMat = new THREE.MeshPhongMaterial( { color: 0x999999, ambient: 0x999999, specular:0x555555, shininess: 100, reflectivity: 100 } )
 
 	callbackKey = function(geometry) {createLogoMesh(geometry, logoFrontMat)};
@@ -371,11 +373,28 @@ function init() {
 	/***************************************************************************/
 	/***************************Planet 6 - Site Map*****************************/
 	/***************************************************************************/
+	var createPlanetMesh = function( geometry, i, material, y )
+	{
+		var zMat = material;
+	    var zmesh = new THREE.Mesh( geometry, zMat );
+	    zmesh.position.set( 0, y, 0 );
+	    zmesh.scale.set( 6.5, 6.5, 6.5 );
+	    zmesh.overdraw = true;
+	    centerOrbit[i].add( zmesh );
+	};
 
-	centerOrbit[6].rotation.set( 0, 0, degToRad(185) );
+	var siteMapText = THREE.ImageUtils.loadTexture("img/textures/spacejam/sitemap.png");
+	var siteMapMat = new THREE.MeshPhongMaterial( { map: siteMapText, ambient: 0x999999, specular:0x555555, shininess: 100, reflectivity: 100 } )
+
+	callbackKey = function(geometry) {createPlanetMesh(geometry, 6, siteMapMat, 285)};
+	loader.load( "js/obj/sitemap_mesh.js", callbackKey );
+
+	centerOrbit[6].rotation.set( 0, 0, degToRad(195) );
+
+	console.log(planets[6]);
 
 	planets[6].position.set( 0, 290, 0 );
-	planets[6].scale.set( 0.9, 0.9, 0.9 );
+	planets[6].scale.set( 0, 0, 0 );
 
 	/***************************************************************************/
 	/***************************************************************************/
@@ -444,11 +463,15 @@ function init() {
 	/***************************************************************************/
 	/**********************Planet 10 - Press Box Shuttle************************/
 	/***************************************************************************/
+	var shipMat = new THREE.MeshPhongMaterial( { color: 0xFF0000, ambient: 0x999999, specular:0x555555, shininess: 100, reflectivity: 100 } )
+
+	callbackKey = function(geometry) {createPlanetMesh(geometry, 10, shipMat, 310)};
+	loader.load( "js/obj/ship.js", callbackKey );
 
 	centerOrbit[10].rotation.set( 0, 0, degToRad(322) );
 
 	planets[10].position.set(0, 310, 0);
-	planets[10].scale.set(0.75, 0.75, 0.75);
+	planets[10].scale.set(0, 0, 0);
 
 	/***************************************************************************/
 	/***************************************************************************/
