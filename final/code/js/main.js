@@ -292,17 +292,10 @@ function init() {
 	planets[2].material.specular = new THREE.Color( 0x444444 );
 	var c = new THREE.Color( 0x0089EB ); //lightish blue
 	planets[2].material.color = c;
-	// planets[2].material.transparent = true;
-	// planets[2].material.opacity = 0.0;
-
-	// var ringGeometry = new THREE.TorusGeometry( 70, 5, 50, 50);
-	// var ringMaterial = new THREE.MeshPhongMaterial( { color: 0xFF0000 } );
-	// var ringMesh = new THREE.Mesh( ringGeometry, ringMaterial );
-	// planets[2].add( ringMesh );
 
 	var saturnRing = new THREEx.Planets._RingGeometry(60, 80, 512);
 	var ringMaterial = new THREE.MeshPhongMaterial( { 
-		color: 0xFF0000,
+		color: 0xE8235E,
 		side : THREE.DoubleSide,
 		transparent: true,
 		opacity: 0.5 
@@ -394,8 +387,9 @@ function init() {
 	console.log(planets[6]);
 
 	planets[6].position.set( 0, 290, 0 );
-	planets[6].scale.set( 0, 0, 0 );
-
+	planets[6].scale.set( 1, 1, 1 );
+	planets[6].material.opacity = 0.0;
+	planets[6].material.transparent = true;
 	/***************************************************************************/
 	/***************************************************************************/
 	/***************************************************************************/
@@ -454,6 +448,17 @@ function init() {
 
 	var c = new THREE.Color( 0xED1A48 );
 	planets[9].material.color = c;
+
+	var saturnRing = new THREEx.Planets._RingGeometry(60, 80, 256);
+	var ringMaterial = new THREE.MeshPhongMaterial( { 
+		color: 0x18E7F2,
+		side : THREE.DoubleSide,
+		transparent: true,
+		opacity: 0.5 
+	});
+	var ringMesh = new THREE.Mesh( saturnRing, ringMaterial );
+	ringMesh.rotation.set(Math.PI / 6, -Math.PI / 9, 0);
+	planets[9].add( ringMesh );
 	/***************************************************************************/
 	/***************************************************************************/
 	/***************************************************************************/
@@ -463,7 +468,8 @@ function init() {
 	/***************************************************************************/
 	/**********************Planet 10 - Press Box Shuttle************************/
 	/***************************************************************************/
-	var shipMat = new THREE.MeshPhongMaterial( { color: 0xFF0000, ambient: 0x999999, specular:0x555555, shininess: 100, reflectivity: 100 } )
+	var shipText = THREE.ImageUtils.loadTexture("img/textures/spacejam/ship.png");
+	var shipMat = new THREE.MeshPhongMaterial( { map: shipText, ambient: 0x999999, specular:0x555555, shininess: 100, reflectivity: 100 } )
 
 	callbackKey = function(geometry) {createPlanetMesh(geometry, 10, shipMat, 310)};
 	loader.load( "js/obj/ship.js", callbackKey );
@@ -471,7 +477,9 @@ function init() {
 	centerOrbit[10].rotation.set( 0, 0, degToRad(322) );
 
 	planets[10].position.set(0, 310, 0);
-	planets[10].scale.set(0, 0, 0);
+	planets[10].scale.set(1, 1, 1);
+	planets[10].material.opacity = 0.0;
+	planets[10].material.transparent = true;
 
 	/***************************************************************************/
 	/***************************************************************************/
