@@ -8,6 +8,10 @@ var starMaterial, starGeometry;
 var starColors = new Array();
 var starOffsets = new Array();
 
+var starMaterialLarge, starGeometryLarge;
+var starColorsLarge = new Array();
+var starOffsetsLarge = new Array();
+
 var planets = new Array(); //Actual planet meshes
 var planetNames = new Array(); //Array of titles for the different planets
 
@@ -56,8 +60,8 @@ function init() {
 	controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 	//Create basic geometry and material for a cube. Position it and add to the scene.
-	var mainCubeGeometry = new THREE.SphereGeometry(25, 32, 32);
-	var mainCubeMaterial = new THREE.MeshLambertMaterial({ color: 0x666666 });
+	var mainCubeGeometry = new THREE.SphereGeometry(25, 1, 1);
+	var mainCubeMaterial = new THREE.MeshLambertMaterial({ opacity: 0, transparent: true });
     mainCube = new THREE.Mesh( mainCubeGeometry, mainCubeMaterial );
 	scene.add( mainCube );
 
@@ -69,13 +73,17 @@ function init() {
 		mainCube.add( centerOrbit[i] );
 	}
 
-	pointLight = new THREE.PointLight(0xFFFFFF, 2.0);
-
-	pointLight.position.x = 10;
-	pointLight.position.y = 100;
-	pointLight.position.z = 130;
-
+	pointLight = new THREE.PointLight(0xF5F4ED, 1.0);
+	pointLight.position.set( 10, 100, 130 );
 	scene.add( pointLight );
+
+	var spotLightKey = new THREE.SpotLight(0xFAF9ED, 1.0, 0, Math.PI/2, 10.0);
+	spotLightKey.position.set(-1000, 30, 700);
+	scene.add( spotLightKey );
+
+	var spotLightFill = new THREE.SpotLight(0xFAF9ED, 0.7, 0, Math.PI/2, 10.0);
+	spotLightFill.position.set(1000, 30, 700);
+	scene.add( spotLightFill );
 
 	hemiLight = new THREE.HemisphereLight(0xFFFFFF);
 	//scene.add(hemiLight);
@@ -83,12 +91,13 @@ function init() {
 	/*********LOAD OBJ*********************/
 	var loader = new THREE.JSONLoader();
  
-	var createTextMesh = function( geometry, i, material )
+	var createTextMesh = function( geometry, i, material, pX, pY, pZ, rZ, s )
 	{
 		var zMat = material;
 	    var zmesh = new THREE.Mesh( geometry, zMat );
-	    zmesh.position.set( 0, 0, 50 );
-	    zmesh.scale.set( 15, 15, 15 );
+	    zmesh.position.set( pX, pY, pZ );
+	    zmesh.scale.set( s, s, s );
+	    zmesh.rotation.set(0, 0, rZ);
 	    zmesh.overdraw = true;
 	    planetNames.push( zmesh );
 	    planets[i].add( zmesh );
@@ -97,45 +106,46 @@ function init() {
 	var textMat = new THREE.MeshLambertMaterial({ color: 0xD9CC14 })
  
  	//Load all of the site names
-	callbackKey = function(geometry) {createTextMesh(geometry, 0, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 0, textMat, 0, 35, 50, degToRad(5), 15)};
 	loader.load( "js/obj/jamcentral.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 1, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 1, textMat, 0, 35, 50, degToRad(-20), 15)};
 	loader.load( "js/obj/planetbball.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 2, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 2, textMat, -30, 20, 90, degToRad(-50), 12.5)};
 	loader.load( "js/obj/lunartunes.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 3, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 3, textMat, -65, -90, 20, degToRad(-80), 23)};
 	loader.load( "js/obj/jumpstation.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 4, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 4, textMat, -20, -100,  -10, degToRad(-108), 14)};
 	loader.load( "js/obj/warnerstudiostore.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 5, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 5, textMat, 40, -100, 20, degToRad(-150), 16)};
 	loader.load( "js/obj/behindthejam.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 6, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 6, textMat, 30, -65, -30, degToRad(-190), 15)};
 	loader.load( "js/obj/sitemap.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 7, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 7, textMat, 70, 0, 0, degToRad(-230), 12)};
 	loader.load( "js/obj/stellarsouvenirs.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 8, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 8, textMat, 55, 20, 0, degToRad(-265), 19)};
 	loader.load( "js/obj/juniorjam.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 9, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 9, textMat, 30, 50, -30, degToRad(-295), 20)};
 	loader.load( "js/obj/thelineup.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 10, textMat)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 10, textMat, -30, 40, 20, degToRad(-322), 15)};
 	loader.load( "js/obj/pressboxshuttle.js", callbackKey );
 
 	var createLogoMesh = function( geometry, material )
 	{
 		var zMat = material;
 	    var zmesh = new THREE.Mesh( geometry, zMat );
-	    zmesh.position.set( 0, 0, 0 );
+	    zmesh.position.set( 10, 40, 0 );
 	    zmesh.scale.set( 4.2, 4.2, 4.2 );
+	    zmesh.rotation.set(0, 0, degToRad(-5));
 	    zmesh.overdraw = true;
 	    mainCube.add( zmesh );
 	};
@@ -159,10 +169,12 @@ function init() {
 
 	/*******ADD PARTICLES********/
 	starGeometry = new THREE.Geometry();
+	sprite = THREE.ImageUtils.loadTexture( "img/star1.png" );
 
-	sprite = THREE.ImageUtils.loadTexture( "img/star.png" );
+	starGeometryLarge = new THREE.Geometry();
+	spriteLarge = THREE.ImageUtils.loadTexture( "img/star.png" );
 
-	for ( i = 0; i < 10000; i ++ ) {
+	for ( i = 0; i < 8000; i ++ ) {
 
 		var vertex = new THREE.Vector3();
 		vertex.x = 5000 * Math.random() - 2500;
@@ -180,14 +192,37 @@ function init() {
 
 	}
 
-	starGeometry.colors = starColors;
+	for ( i = 0; i < 2000; i ++ ) {
 
-	starMaterial = new THREE.ParticleSystemMaterial( { size: 3, sizeAttenuation: false, map: sprite, vertexColors: true, transparent: true } );
+		var vertex = new THREE.Vector3();
+		vertex.x = 5000 * Math.random() - 2500;
+		vertex.y = 5000 * Math.random() - 2500;
+		vertex.z = 5000 * Math.random() - 2500;
+
+		starGeometryLarge.vertices.push( vertex );
+
+		color = new THREE.Color(0xFFFFFF);
+		color.setHSL(0, 0, 1.0);
+		starColorsLarge.push( color );
+
+		offset = Math.random() * Math.PI * 2;
+		starOffsetsLarge.push( offset );
+	}
+
+	starGeometry.colors = starColors;
+	starGeometryLarge.colors = starColorsLarge;
+
+	starMaterial = new THREE.ParticleSystemMaterial( { size: 8, sizeAttenuation: false, map: sprite, vertexColors: true, transparent: true } );
 	starMaterial.color.setHSL( 1.0, 0.0, 0.9 );
+	starMaterialLarge = new THREE.ParticleSystemMaterial( { size: 11, sizeAttenuation: false, map: spriteLarge, vertexColors: true, transparent: true } );
+	starMaterialLarge.color.setHSL( 1.0, 0.0, 0.9 );
 
 	particles = new THREE.ParticleSystem( starGeometry, starMaterial );
 	particles.sortParticles = true;
 	scene.add( particles );
+	particlesLarge = new THREE.ParticleSystem( starGeometryLarge, starMaterialLarge );
+	particlesLarge.sortParticles = true;
+	scene.add( particlesLarge );
 
 
 	for (var i = 0; i < 11; i++) {
@@ -382,9 +417,7 @@ function init() {
 	callbackKey = function(geometry) {createPlanetMesh(geometry, 6, siteMapMat, 285)};
 	loader.load( "js/obj/sitemap_mesh.js", callbackKey );
 
-	centerOrbit[6].rotation.set( 0, 0, degToRad(195) );
-
-	console.log(planets[6]);
+	centerOrbit[6].rotation.set( 0, 0, degToRad(190) );
 
 	planets[6].position.set( 0, 290, 0 );
 	planets[6].scale.set( 1, 1, 1 );
@@ -436,7 +469,7 @@ function init() {
 	/***************************************************************************/
 	/**************************Planet 9 - The Lineup****************************/
 	/***************************************************************************/
-	centerOrbit[9].rotation.set( 0, 0, degToRad(290) );
+	centerOrbit[9].rotation.set( 0, 0, degToRad(295) );
 
 	planets[9].position.set(0, 310, 0);
 	planets[9].scale.set(0.75, 0.75, 0.75);
@@ -484,6 +517,7 @@ function init() {
 	/***************************************************************************/
 	/***************************************************************************/
 	/***************************************************************************/
+
 
 	//The following code lets us draw axes in the scene
 	//Code from http://rohitghatol.com/?p=388
@@ -556,7 +590,7 @@ function init() {
 	     return axes;
 	}
 
-	scene.add(createAxes(500));
+	//scene.add(createAxes(500));
 
 
 }
@@ -570,16 +604,19 @@ function animate() {
 		//centerOrbit[i].rotation.z += planetTheta;
 	}
 
-	planets[0].rotation.set(degToRad(-35), theta, 0);
-	planets[1].rotation.set(0, 0, -theta * 2.5);
-	planets[2].rotation.set(0, -theta * 0.2, 0);
-	planets[3].rotation.set(theta * 0.5, 0, 0);
-	planets[4].rotation.set(-theta * 0.8, degToRad(-20), degToRad(-50));
-	planets[5].rotation.set( 0, theta * 0.4, 0 );
+	// planets[0].rotation.set(degToRad(-35), theta, 0);
+	// planets[1].rotation.set(0, 0, -theta * 2.5);
+	// planets[2].rotation.set(0, -theta * 0.2, 0);
+	// planets[3].rotation.set(theta * 0.5, 0, 0);
+	// planets[4].rotation.set(-theta * 0.8, degToRad(-20), degToRad(-50));
+	// planets[5].rotation.set( 0, theta * 0.4, 0 );
 
-	planets[7].rotation.set(0, 0, theta);
-	planets[8].rotation.set(theta * 0.5, 0, degToRad(-70));
-	planets[9].rotation.set(0, theta * 0.7, 0);
+	// planets[7].rotation.set(0, 0, theta);
+	// planets[8].rotation.set(theta * 0.5, 0, degToRad(-70));
+	// planets[9].rotation.set(0, theta * 0.7, 0);
+
+	//planets[0].rotation.set(degToRad(-25), theta, 0);
+
 
 	for (var i = 0; i < starGeometry.colors.length; i++) {
 		var brightness = Math.sin(theta * 4 + starOffsets[i]);
@@ -587,6 +624,14 @@ function animate() {
 		starGeometry.colors[i].r = newBrightness;
 		starGeometry.colors[i].g = newBrightness;
 		starGeometry.colors[i].b = newBrightness;
+	}
+
+	for (var i = 0; i < starGeometryLarge.colors.length; i++) {
+		var brightness = Math.sin(theta * 4 + starOffsets[i]);
+		var newBrightness = map_range(brightness, -1, 1, 0.3, 1.0);
+		starGeometryLarge.colors[i].r = newBrightness;
+		starGeometryLarge.colors[i].g = newBrightness;
+		starGeometryLarge.colors[i].b = newBrightness;
 	}
 
 	moonOrbit.rotation.set(1, 0, theta*3.0);

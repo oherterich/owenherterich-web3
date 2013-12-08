@@ -1,1 +1,7 @@
 * { margin: 0; padding: 0}
+
+#three {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
