@@ -599,8 +599,6 @@ function init() {
 	}
 
 	//scene.add(createAxes(500));
-
-
 }
 
 function animate() {
@@ -612,19 +610,19 @@ function animate() {
 		//centerOrbit[i].rotation.z += planetTheta;
 	}
 
-	// planets[0].rotation.set(degToRad(-35), theta, 0);
-	// planets[1].rotation.set(0, 0, -theta * 2.5);
-	// planets[2].rotation.set(0, -theta * 0.2, 0);
-	// planets[3].rotation.set(theta * 0.5, 0, 0);
-	// planets[4].rotation.set(-theta * 0.8, degToRad(-20), degToRad(-50));
-	// planets[5].rotation.set( 0, theta * 0.4, 0 );
-
-	// planets[7].rotation.set(0, 0, theta);
-	// planets[8].rotation.set(theta * 0.5, 0, degToRad(-70));
-	// planets[9].rotation.set(0, theta * 0.7, 0);
-
-	planets[0].rotation.set(0, theta, 0);
-
+	planets[0].rotation.set(degToRad(-35), theta, 0);
+	planets[1].rotation.set(0, 0, -theta * 2.5);
+	planets[2].rotation.set(0, -theta * 0.2, 0);
+	planets[3].rotation.set(theta * 0.5, 0, 0);
+	planets[4].rotation.set(-theta * 0.8, degToRad(-20), degToRad(-50));
+	planets[5].rotation.set( 0, theta * 0.4, 0 );
+	centerOrbit[6].children[2].rotation.set(0,0,theta * 0.1);
+	planets[7].rotation.set(0, 0, theta);
+	planets[8].rotation.set(theta * 0.5, 0, degToRad(-70));
+	planets[9].rotation.set(0, theta * 0.7, 0);
+	if (centerOrbit[10].children[2] != null){
+		centerOrbit[10].children[2].rotation.set(theta*0.2,theta*0.3,0);
+	}
 
 	for (var i = 0; i < starGeometry.colors.length; i++) {
 		var brightness = Math.sin(theta * 4 + starOffsets[i]);
