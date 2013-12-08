@@ -13,6 +13,7 @@ var starColorsLarge = new Array();
 var starOffsetsLarge = new Array();
 
 var planets = new Array(); //Actual planet meshes
+var planetPositions = new Array();
 var planetNames = new Array(); //Array of titles for the different planets
 
 var logoTitle, logoDisc; //Meshes for the logo
@@ -100,43 +101,43 @@ function init() {
 	    zmesh.rotation.set(0, 0, rZ);
 	    zmesh.overdraw = true;
 	    planetNames.push( zmesh );
-	    planets[i].add( zmesh );
+	    planetPositions[i].add( zmesh );
 	};
 
 	var textMat = new THREE.MeshLambertMaterial({ color: 0xD9CC14 })
  
  	//Load all of the site names
-	callbackKey = function(geometry) {createTextMesh(geometry, 0, textMat, 0, 35, 50, degToRad(5), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 0, textMat, 0, 15, 50, degToRad(5), 15)};
 	loader.load( "js/obj/jamcentral.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 1, textMat, 0, 35, 50, degToRad(-20), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 1, textMat, 0, 50, 50, degToRad(-20), 15)};
 	loader.load( "js/obj/planetbball.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 2, textMat, -30, 20, 90, degToRad(-50), 12.5)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 2, textMat, -40, 70, 90, degToRad(-50), 15)};
 	loader.load( "js/obj/lunartunes.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 3, textMat, -65, -90, 20, degToRad(-80), 23)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 3, textMat, -45, -20, 20, degToRad(-80), 15)};
 	loader.load( "js/obj/jumpstation.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 4, textMat, -20, -100,  -10, degToRad(-108), 14)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 4, textMat, -20, -100,  -10, degToRad(-108), 15)};
 	loader.load( "js/obj/warnerstudiostore.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 5, textMat, 40, -100, 20, degToRad(-150), 16)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 5, textMat, 40, -100, 20, degToRad(-150), 15)};
 	loader.load( "js/obj/behindthejam.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 6, textMat, 30, -65, -30, degToRad(-190), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 6, textMat, 40, -80, -30, degToRad(-190), 15)};
 	loader.load( "js/obj/sitemap.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 7, textMat, 70, 0, 0, degToRad(-230), 12)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 7, textMat, 90, -15, 0, degToRad(-230), 15)};
 	loader.load( "js/obj/stellarsouvenirs.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 8, textMat, 55, 20, 0, degToRad(-265), 19)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 8, textMat, 40, 30, 0, degToRad(-265), 15)};
 	loader.load( "js/obj/juniorjam.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 9, textMat, 30, 50, -30, degToRad(-295), 20)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 9, textMat, 20, 50, -30, degToRad(-295), 15)};
 	loader.load( "js/obj/thelineup.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 10, textMat, -30, 40, 20, degToRad(-322), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 10, textMat, -40, 75, 20, degToRad(-322), 15)};
 	loader.load( "js/obj/pressboxshuttle.js", callbackKey );
 
 	var createLogoMesh = function( geometry, material )
@@ -248,7 +249,14 @@ function init() {
 		planet.position.set( 0, 300, 0);
 		planets.push( planet );
 
+		var planetPos = new THREE.Object3D();
+		planetPos.position.x = planet.position.x;
+		planetPos.position.y = planet.position.y;
+		planetPos.position.z = planet.position.z;
+		planetPositions.push( planetPos );
+
 		centerOrbit[i].add( planets[i] );
+		centerOrbit[i].add( planetPositions[i] );
 	}
 	/***************************************************************************/
 	/*****************************Planet 0 - Jam Central******************************/
@@ -615,7 +623,7 @@ function animate() {
 	// planets[8].rotation.set(theta * 0.5, 0, degToRad(-70));
 	// planets[9].rotation.set(0, theta * 0.7, 0);
 
-	//planets[0].rotation.set(degToRad(-25), theta, 0);
+	planets[0].rotation.set(0, theta, 0);
 
 
 	for (var i = 0; i < starGeometry.colors.length; i++) {
@@ -666,4 +674,6 @@ function degToRad(deg) {
 }
 
 init();
-animate();
+window.onload = function() {
+	animate();
+}
