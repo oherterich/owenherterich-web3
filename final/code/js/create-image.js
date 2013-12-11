@@ -4,6 +4,8 @@ var bg = new Array();
 var character = new Array();
 var text = new Array();
 
+var photoUrl;
+
 for (var i = 0; i < numImg; i++) {
 	bg.push( "img/create-image/bg/bg" + i + ".png" );
 	character.push( "img/create-image/character/character" + i + ".png" );
@@ -37,7 +39,8 @@ var eventHandler = function() {
 				text: current_text
 			},
 			success: function( data ) {
-				console.log( data );
+				photoUrl = data;
+				downloadURL( photoUrl );
 			}
 		});
 	});
@@ -127,5 +130,21 @@ var eventHandler = function() {
 		});
 	}
 }
+
+var downloadImage = function( file ) {
+	window.location = file;
+}
+
+var downloadURL = function downloadURL(url) {
+    var hiddenIFrameID = 'hiddenDownloader',
+        iframe = document.getElementById(hiddenIFrameID);
+    if (iframe === null) {
+        iframe = document.createElement('iframe');
+        iframe.id = hiddenIFrameID;
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+    }
+    iframe.src = url;
+};
 
 eventHandler();

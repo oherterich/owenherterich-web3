@@ -1,42 +1,14 @@
 <?php
-	function saveImage() {
-		$imgWidth = 500;
-		$imgHeight = 500;
+	//Connect to database
+	$mysql = mysql_connect('127.0.0.1', 'root', 'root');
 
-		$layers = array();
-		$layers[] = imagecreatefrompng("img/create-image/bg/bg1.png");
-		$layers[] = imagecreatefrompng("img/create-image/character/character1.png");
-		$layers[] = imagecreatefrompng("img/create-image/text/text1.png");
+	// Check connection
+	if (mysqli_connect_errno()){
+  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  	}
 
-		$image = imagecreatetruecolor($imgWidth, $imgHeight);
-
-		imagealphablending($image, true);
-		for ($i = 0; $i < count($layers); $i++) {
-		  imagecopymerge_alpha($image, $layers[$i], 0, 0, 0, 0, $imgWidth, $imgHeight, 100);
-		}
-		imagealphablending($image, false);
-		imagesavealpha($image, true);
-
-		imagepng($image, "hello.png");
-	}
-
-	function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct){ 
-        // creating a cut resource 
-        $cut = imagecreatetruecolor($src_w, $src_h); 
-
-        // copying relevant section from background to the cut resource 
-        imagecopy($cut, $dst_im, 0, 0, $dst_x, $dst_y, $src_w, $src_h); 
-        
-        // copying relevant section from watermark to the cut resource 
-        imagecopy($cut, $src_im, 0, 0, $src_x, $src_y, $src_w, $src_h); 
-        
-        // insert cut resource to destination image 
-        imagecopymerge($dst_im, $cut, $dst_x, $dst_y, 0, 0, $src_w, $src_h, $pct); 
-    } 
-
-	if ( isset($_GET['save']) ) {
-		saveImage();
-	}
+  	//Select our table
+	mysql_select_db('spacejam', $mysql);
 ?>
 
 <!doctype HTML>
@@ -73,10 +45,23 @@
 			<div id="textRight" class="arrow arrow-right"></div>
 			</div>
 		</section>
-		<!--<a id="save-image" href="jamcentral.php?save=true">Save image!</a>-->
-		<a id="save-image" href="#">Save image!</a>
-		<a href="#">Upload to Facebook!</a>
-	</section>
+		<section id="save">
+			<h3><a id="save-image" href="#">Save image!</a></h3>
+			<h3><a href="#">Upload to Facebook!</a></h3>
+		</section>
+		<section id="img-feed">
+			<h1>Recently created images!</h1>
+			<?php
+				//Get all items in database
+				$sql = "SELECT * FROM jamcentral";
+				$query = mysql_query($sql);
+
+				//Loop through our items in the feed
+				while ($data = mysql_fetch_assoc($query)){
+					echo '<img class="user-img" src="' . $data['url'] . '">';
+				}
+			?>
+		</section>
 	</section>
 
 	<script src="js/create-image.js"></script>

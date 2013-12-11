@@ -26,7 +26,14 @@
 		imagealphablending($image, false);
 		imagesavealpha($image, true);
 
-		imagepng($image, "img/hello.png");
+		$photoid = uniqid();
+		$photourl = "img/jamcentral-user-img/" . $photoid . ".png";
+
+		imagepng($image, $photourl);
+
+		saveToDatabase( $photourl );
+
+		echo $photourl;
 	}
 
 	function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct){ 
@@ -41,6 +48,24 @@
         
         // insert cut resource to destination image 
         imagecopymerge($dst_im, $cut, $dst_x, $dst_y, 0, 0, $src_w, $src_h, $pct); 
+    }
+
+    function saveToDatabase ( $photourl ) {
+    	$currentDate = date('d-m-Y H:i:s');
+
+    	//Connect to database
+    	$mysql = mysql_connect('127.0.0.1', 'root', 'root');
+
+    	// Check connection
+		// if (mysqli_connect_errno()){
+	 //  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	 //  	}
+
+	  	mysql_select_db('spacejam', $mysql);
+
+	  	$sql = "INSERT INTO jamcentral ( url, date_saved ) VALUES ( '$photourl', '$currentDate' )";
+	  	//$sql = "INSERT INTO jamcentral () VALUES ()";
+	  	$query = mysql_query($sql);
     } 
 
     //saveImage();
