@@ -26,7 +26,7 @@
 		imagealphablending($image, false);
 		imagesavealpha($image, true);
 
-		imagepng($image, "hello.png");
+		imagepng($image, "img/hello.png");
 	}
 
 	function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct){ 
