@@ -25,7 +25,23 @@ var current_text = Math.floor(Math.random() * numImg);
 textImg.src = text[ current_text ];
 
 //Listen for mouse hover on the buttons
-var hoverListener = function() {
+var eventHandler = function() {
+	var saveImage = document.getElementById("save-image");
+	saveImage.addEventListener( 'click', function( evt ) {
+		$.ajax({
+			type: 'post',
+			url: 'savephoto.php',
+			data: {
+				bg: current_bg, 
+				character: current_character,
+				text: current_text
+			},
+			success: function( data ) {
+				console.log( data );
+			}
+		});
+	});
+
 	var arrowList = document.getElementsByClassName( "arrow" );
 	
 	for (var i = 0; i < arrowList.length; i++) {
@@ -112,4 +128,4 @@ var hoverListener = function() {
 	}
 }
 
-hoverListener();
+eventHandler();
