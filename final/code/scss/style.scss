@@ -189,6 +189,14 @@ body {
 			transition: background-color 0.3s;
 		}
 	}
+
+	.facebook {
+		opacity: 1.0;
+	}
+
+	.facebook-hidden {
+		opacity: 0.0;
+	}
 }
 
 /*************USER FEED*************/

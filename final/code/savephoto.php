@@ -29,7 +29,10 @@
 		$photoid = uniqid();
 		$photourl = "img/jamcentral-user-img/" . $photoid . ".png";
 
+		$currentPhoto = "img/current-user-saved.png";
+
 		imagepng($image, $photourl);
+		imagepng($image, $currentPhoto);
 
 		saveToDatabase( $photourl );
 

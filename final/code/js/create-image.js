@@ -6,6 +6,7 @@ var text = new Array();
 
 var photoUrl;
 
+
 for (var i = 0; i < numImg; i++) {
 	bg.push( "img/create-image/bg/bg" + i + ".png" );
 	character.push( "img/create-image/character/character" + i + ".png" );
@@ -30,6 +31,11 @@ textImg.src = text[ current_text ];
 var eventHandler = function() {
 	var saveImage = document.getElementById("save-image");
 	saveImage.addEventListener( 'click', function( evt ) {
+
+		var facebookUpload = document.getElementById("facebook-upload");
+		facebookUpload.classList.remove("facebook-hidden");
+		facebookUpload.classList.add("facebook");
+
 		$.ajax({
 			type: 'post',
 			url: 'savephoto.php',

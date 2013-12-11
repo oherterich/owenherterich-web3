@@ -128,6 +128,10 @@ body {
     #save a:hover {
       background-color: #666;
       transition: background-color 0.3s; }
+  #save .facebook {
+    opacity: 1.0; }
+  #save .facebook-hidden {
+    opacity: 0.0; }
 
 /*************USER FEED*************/
 #img-feed h1 {
