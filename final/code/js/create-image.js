@@ -15,86 +15,101 @@ var characterImg = document.getElementById("characterImg");
 var textImg = document.getElementById("textImg");
 
 //Random images are generated when the page loads.
-bgImg.src = bg[ Math.floor(Math.random() * numImg) ];
-characterImg.src = character[ Math.floor(Math.random() * numImg) ];
-textImg.src = text[ Math.floor(Math.random() * numImg) ];
+var current_bg = Math.floor(Math.random() * numImg);
+bgImg.src = bg[ current_bg ];
+
+var current_character = Math.floor(Math.random() * numImg);
+characterImg.src = character[ current_character ];
+
+var current_text = Math.floor(Math.random() * numImg);
+textImg.src = text[ current_text ];
 
 //Listen for mouse hover on the buttons
 var hoverListener = function() {
-	//BACKGROUND HOVER
-	var bgLabel = document.getElementById("bgLabel");
+	var arrowList = document.getElementsByClassName( "arrow" );
+	
+	for (var i = 0; i < arrowList.length; i++) {
+		var arrow = arrowList.item(i);
 
-	var bgLeft = document.getElementById("bgLeft");
-	bgLeft.addEventListener( "mouseover", function( evt ) {
-		bgLabel.classList.remove("label-hidden");
-		bgLabel.classList.add("label");
-	});
+		arrow.addEventListener( "mouseover", function( evt ) {
+			var thisLabel = this.parentNode.children[2];
+			thisLabel.classList.remove("label-hidden");
+			thisLabel.classList.add("label");
+		});
 
-	bgLeft.addEventListener( "mouseout", function( evt ) {
-		bgLabel.classList.remove("label");
-		bgLabel.classList.add("label-hidden");
-	});
+		arrow.addEventListener( "mouseout", function( evt ) {
+			var thisLabel = this.parentNode.children[2];
+			thisLabel.classList.remove("label");
+			thisLabel.classList.add("label-hidden");
+		});
 
-	var bgRight = document.getElementById("bgRight");
-	bgRight.addEventListener( "mouseover", function( evt ) {
-		bgLabel.classList.remove("label-hidden");
-		bgLabel.classList.add("label");
-	});
+		arrow.addEventListener( "click", function( evt ) {
+			evt.preventDefault();
+			evt.stopPropagation();
 
-	bgRight.addEventListener( "mouseout", function( evt ) {
-		bgLabel.classList.remove("label");
-		bgLabel.classList.add("label-hidden");
-	});
+			if (this.classList[1] == "arrow-left") {
+				var thisImage = this.parentNode.children[0];
+				if (thisImage.id == "bgImg") {
+					if (current_bg <= 0) {
+						current_bg = numImg - 1;
+					}
+					else {
+						current_bg -= 1;
+					}
+					thisImage.src = bg[ current_bg ];
+				}
+				else if (thisImage.id == "characterImg") {
+					if (current_character <= 0) {
+						current_character = numImg - 1;
+					}
+					else {
+						current_character -= 1;
+					}
+					thisImage.src = character[ current_character ];
+				}
+				else if (thisImage.id == "textImg") {
+					if (current_text <= 0) {
+						current_text = numImg - 1;
+					}
+					else {
+						current_text -= 1;
+					}
+					thisImage.src = text[ current_text ];
+				}
+			}
 
-	//CHARACTER HOVER
-	var characterLabel = document.getElementById("characterLabel");
-
-	var characterLeft = document.getElementById("characterLeft");
-	characterLeft.addEventListener( "mouseover", function( evt ) {
-		characterLabel.classList.remove("label-hidden");
-		characterLabel.classList.add("label");
-	});
-
-	characterLeft.addEventListener( "mouseout", function( evt ) {
-		characterLabel.classList.remove("label");
-		characterLabel.classList.add("label-hidden");
-	});
-
-	var characterRight = document.getElementById("characterRight");
-	characterRight.addEventListener( "mouseover", function( evt ) {
-		characterLabel.classList.remove("label-hidden");
-		characterLabel.classList.add("label");
-	});
-
-	characterRight.addEventListener( "mouseout", function( evt ) {
-		characterLabel.classList.remove("label");
-		characterLabel.classList.add("label-hidden");
-	});
-
-	//TEXT HOVER
-	var textLabel = document.getElementById("textLabel");
-
-	var textLeft = document.getElementById("textLeft");
-	textLeft.addEventListener( "mouseover", function( evt ) {
-		textLabel.classList.remove("label-hidden");
-		textLabel.classList.add("label");
-	});
-
-	textLeft.addEventListener( "mouseout", function( evt ) {
-		textLabel.classList.remove("label");
-		textLabel.classList.add("label-hidden");
-	});
-
-	var textRight = document.getElementById("textRight");
-	textRight.addEventListener( "mouseover", function( evt ) {
-		textLabel.classList.remove("label-hidden");
-		textLabel.classList.add("label");
-	});
-
-	textRight.addEventListener( "mouseout", function( evt ) {
-		textLabel.classList.remove("label");
-		textLabel.classList.add("label-hidden");
-	});
+			if (this.classList[1] == "arrow-right") {
+				var thisImage = this.parentNode.children[0];
+				if (thisImage.id == "bgImg") {
+					if (current_bg >= numImg - 1) {
+						current_bg = 0;
+					}
+					else {
+						current_bg += 1;
+					}
+					thisImage.src = bg[ current_bg ];
+				}
+				else if (thisImage.id == "characterImg") {
+					if (current_character >= numImg - 1) {
+						current_character = 0;
+					}
+					else {
+						current_character += 1;
+					}
+					thisImage.src = character[ current_character ];
+				}
+				else if (thisImage.id == "textImg") {
+					if (current_text >= numImg - 1) {
+						current_text = 0;
+					}
+					else {
+						current_text += 1;
+					}
+					thisImage.src = text[ current_text ];
+				}
+			}
+		});
+	}
 }
 
 hoverListener();
