@@ -213,3 +213,32 @@ body {
 		padding: 0.5%;
 	}
 }
+
+/*************MISC*************/
+footer {
+	position: fixed;
+	display: block;
+	bottom: 1%;
+	left: 30%;
+	width: 40%;
+	margin: 0 auto;
+	text-align: center;
+
+	p {
+		font-size: 0.9rem;
+		color: #444;
+	}
+
+	a {
+		text-decoration: none;
+		color: #666;
+		
+		transition: color 0.4s;
+
+		&:hover {
+			color: #888;
+
+			transition: color 0.4s;
+		}
+	}
+}

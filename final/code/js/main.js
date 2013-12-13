@@ -110,7 +110,7 @@ function init() {
 	    satelliteOrbit.add( zmesh );
 	};
 
-	var satelliteTex = THREE.ImageUtils.loadTexture("img/textures/spacejam/satellite.png");
+	var satelliteTex = THREE.ImageUtils.loadTexture("img/textures/spacejam/satellite.jpg");
 	var satelliteMat = new THREE.MeshPhongMaterial({ map: satelliteTex });
 
 	callbackKey = function(geometry) {createSatelliteMesh(geometry, satelliteMat, 0, 500, 0, degToRad(50), 60)};
@@ -259,12 +259,12 @@ function init() {
 		//c.setRGB( Math.random(), Math.random(), Math.random() );
 		c.setRGB(1.0,1.0,1.0);
 
-		var planetTexture = THREE.ImageUtils.loadTexture("img/textures/moon.png");
+		var planetTexture = THREE.ImageUtils.loadTexture("img/textures/moon/moon.jpg");
 		planetTexture.repeat.set( 4, 2 );
 		planetTexture.wrapS = planetTexture.wrapT = THREE.RepeatWrapping;
 		planetTexture.anisotropy = 16;
 
-		var planetBump = THREE.ImageUtils.loadTexture("img/textures/moon_bump.png");
+		var planetBump = THREE.ImageUtils.loadTexture("img/textures/moon/moon_bump.jpg");
 		planetBump.repeat.set( 4, 2 );
 		planetBump.wrapS = planetBump.wrapT = THREE.RepeatWrapping;
 		planetBump.anisotropy = 16;
@@ -291,14 +291,14 @@ function init() {
 
 	planets[0].position.set(0, 280, 0);
 
-	planets[0].material.map = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_color.png");
-	planets[0].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_bump.png");
+	planets[0].material.map = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_color.jpg");
+	planets[0].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_bump.jpg");
 	planets[0].material.bumpScale = 0.05;
-	planets[0].material.specularMap = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_spec.png");
+	planets[0].material.specularMap = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_spec.jpg");
 	planets[0].material.specular = new THREE.Color( 0x333333 );
 
 	//Add clouds to Earth;
-	var cloudTexture = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_cloud_trans.png");
+	var cloudTexture = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_cloud_trans.jpg");
 	var cloudGeometry   = new THREE.SphereGeometry(40.1, 32, 32)
 	var cloudMaterial  = new THREE.MeshPhongMaterial({
 	  map     : cloudTexture,
@@ -315,8 +315,8 @@ function init() {
 
 	//Add moon to Earth
 	var moonGeometry = new THREE.SphereGeometry( 7, 32, 32);
-	var moonTexture = new THREE.ImageUtils.loadTexture("img/textures/earth/moon.png");
-	var moonBump = new THREE.ImageUtils.loadTexture("img/textures/earth/moon_bump.png");
+	var moonTexture = new THREE.ImageUtils.loadTexture("img/textures/earth/moon.jpg");
+	var moonBump = new THREE.ImageUtils.loadTexture("img/textures/earth/moon_bump.jpg");
 	var moonMaterial = new THREE.MeshPhongMaterial( { map: moonTexture, bumpMap: moonBump, bumpScale: 0.05 } );
 	var moon = new THREE.Mesh( moonGeometry, moonMaterial );
 	moon.position.set( 40, 40, 0);
@@ -336,10 +336,10 @@ function init() {
 
 	centerOrbit[1].rotation.set( 0, 0, degToRad(22) );
 
-	planets[1].material.map = new THREE.ImageUtils.loadTexture("img/textures/basketball/basketball.png");
-	planets[1].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/basketball/basketball_bump.png");
+	planets[1].material.map = new THREE.ImageUtils.loadTexture("img/textures/basketball/basketball.jpg");
+	planets[1].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/basketball/basketball_bump.jpg");
 	planets[1].material.bumpScale = 0.05;
-	planets[1].material.specularMap = new THREE.ImageUtils.loadTexture("img/textures/basketball/basketball_spec.png");
+	planets[1].material.specularMap = new THREE.ImageUtils.loadTexture("img/textures/basketball/basketball_spec.jpg");
 	planets[1].material.specular = new THREE.Color( 0x111111 );
 	/***************************************************************************/
 	/***************************************************************************/
@@ -355,8 +355,8 @@ function init() {
 	planets[2].scale.set(1.2, 1.2, 1.2);
 	planets[2].position.set(0, 350, 0);
 
-	planets[2].material.map = new THREE.ImageUtils.loadTexture("img/textures/rock/rock.png");
-	planets[2].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/rock/rock_bump.png");
+	planets[2].material.map = new THREE.ImageUtils.loadTexture("img/textures/rock/rock.jpg");
+	planets[2].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/rock/rock_bump.jpg");
 	planets[2].material.bumpScale = 0.1;
 	planets[2].material.specular = new THREE.Color( 0x444444 );
 	var c = new THREE.Color( 0x0089EB ); //lightish blue
@@ -386,7 +386,7 @@ function init() {
 
 	centerOrbit[3].rotation.set( 0, 0, degToRad(80) );
 
-	planets[3].material.map = new THREE.ImageUtils.loadTexture("img/textures/cloud/cloud.png");
+	planets[3].material.map = new THREE.ImageUtils.loadTexture("img/textures/cloud/cloud.jpg");
 	planets[3].material.specular = new THREE.Color( 0x000000 );
 	var c = new THREE.Color( 0x85FA25 ); //lightish blue
 	planets[3].material.color = c;
@@ -404,8 +404,8 @@ function init() {
 	planets[4].position.set( 0, 320, 0 );
 	planets[4].scale.set(1.05, 1.05, 1.05);
 
-	planets[4].material.map = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_orange.png");
-	planets[4].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_orange_bump.png");
+	planets[4].material.map = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_orange.jpg");
+	planets[4].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_orange_bump.jpg");
 	planets[4].material.bumpScale = 0.05;
 	planets[4].material.specular = new THREE.Color( 0x333333 );
 	/***************************************************************************/
@@ -422,8 +422,8 @@ function init() {
 	planets[5].position.set( 0, 290, 0 );
 	planets[5].scale.set( 0.9, 0.9, 0.9 );
 
-	planets[5].material.map = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_blue.png");
-	planets[5].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_blue_bump.png");
+	planets[5].material.map = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_blue.jpg");
+	planets[5].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_blue_bump.jpg");
 	planets[5].material.bumpScale = 0.2;
 	planets[5].material.specular = new THREE.Color( 0x111111 );
 	/***************************************************************************/
@@ -445,7 +445,7 @@ function init() {
 	    centerOrbit[i].add( zmesh );
 	};
 
-	var siteMapText = THREE.ImageUtils.loadTexture("img/textures/spacejam/sitemap.png");
+	var siteMapText = THREE.ImageUtils.loadTexture("img/textures/spacejam/sitemap.jpg");
 	var siteMapMat = new THREE.MeshPhongMaterial( { map: siteMapText, ambient: 0x999999, specular:0x555555, shininess: 100, reflectivity: 100 } )
 
 	callbackKey = function(geometry) {createPlanetMesh(geometry, 6, siteMapMat, 285)};
@@ -471,7 +471,7 @@ function init() {
 	planets[7].position.set( 0, 290, 0 );
 	planets[7].scale.set( 1.3, 1.3, 1.3 );
 
-	planets[7].material.map = new THREE.ImageUtils.loadTexture("img/textures/cloud/cloud.png");
+	planets[7].material.map = new THREE.ImageUtils.loadTexture("img/textures/cloud/cloud.jpg");
 	planets[7].material.specular = new THREE.Color( 0x000000 );
 
 	var c = new THREE.Color( 0x22C5F2 ); //light cyan
@@ -490,8 +490,8 @@ function init() {
 	planets[8].position.set( 0, 320, 0 );
 	planets[8].scale.set( 0.8, 0.8, 0.8 );
 
-	planets[8].material.map = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_green.png");
-	planets[8].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_green_bump.png");
+	planets[8].material.map = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_green.jpg");
+	planets[8].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/tigerstripe/tigerstripe_green_bump.jpg");
 	planets[8].material.bumpScale = 0.03;
 	planets[8].material.specular = new THREE.Color( 0x222222 );
 	/***************************************************************************/
@@ -508,8 +508,8 @@ function init() {
 	planets[9].position.set(0, 310, 0);
 	planets[9].scale.set(0.75, 0.75, 0.75);
 
-	planets[9].material.map = new THREE.ImageUtils.loadTexture("img/textures/moon/moon.png");
-	planets[9].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/moon/moon_bump.png");
+	planets[9].material.map = new THREE.ImageUtils.loadTexture("img/textures/moon/moon.jpg");
+	planets[9].material.bumpMap = new THREE.ImageUtils.loadTexture("img/textures/moon/moon_bump.jpg");
 	planets[9].material.bumpScale = 0.3;
 	planets[9].material.specular = new THREE.Color( 0x111111 );
 
@@ -535,7 +535,7 @@ function init() {
 	/***************************************************************************/
 	/**********************Planet 10 - Press Box Shuttle************************/
 	/***************************************************************************/
-	var shipText = THREE.ImageUtils.loadTexture("img/textures/spacejam/ship.png");
+	var shipText = THREE.ImageUtils.loadTexture("img/textures/spacejam/ship.jpg");
 	var shipMat = new THREE.MeshPhongMaterial( { map: shipText, ambient: 0x999999, specular:0x555555, shininess: 100, reflectivity: 100 } )
 
 	callbackKey = function(geometry) {createPlanetMesh(geometry, 10, shipMat, 310)};
