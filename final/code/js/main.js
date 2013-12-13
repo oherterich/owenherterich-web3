@@ -107,37 +107,37 @@ function init() {
 	var textMat = new THREE.MeshLambertMaterial({ color: 0xD9CC14 })
  
  	//Load all of the site names
-	callbackKey = function(geometry) {createTextMesh(geometry, 0, textMat, 0, 15, 50, degToRad(5), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 0, textMat, -40, 10, 120, degToRad(5), 15)};
 	loader.load( "js/obj/jamcentral.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 1, textMat, 0, 50, 50, degToRad(-20), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 1, textMat, -40, 40, 50, degToRad(-20), 15)};
 	loader.load( "js/obj/planetbball.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 2, textMat, -40, 70, 90, degToRad(-50), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 2, textMat, -60, 40, 150, degToRad(-50), 15)};
 	loader.load( "js/obj/lunartunes.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 3, textMat, -45, -20, 20, degToRad(-80), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 3, textMat, -35, 0, 110, degToRad(-80), 15)};
 	loader.load( "js/obj/jumpstation.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 4, textMat, -20, -100,  -10, degToRad(-108), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 4, textMat, -22, -100,  110, degToRad(-108), 15)};
 	loader.load( "js/obj/warnerstudiostore.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 5, textMat, 40, -100, 20, degToRad(-150), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 5, textMat, 42, -100, 80, degToRad(-150), 15)};
 	loader.load( "js/obj/behindthejam.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 6, textMat, 40, -80, -30, degToRad(-190), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 6, textMat, 40, -80, 10, degToRad(-190), 15)};
 	loader.load( "js/obj/sitemap.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 7, textMat, 90, -15, 0, degToRad(-230), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 7, textMat, 90, -5, 60, degToRad(-230), 15)};
 	loader.load( "js/obj/stellarsouvenirs.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 8, textMat, 40, 30, 0, degToRad(-265), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 8, textMat, 40, 50, 0, degToRad(-265), 15)};
 	loader.load( "js/obj/juniorjam.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 9, textMat, 20, 50, -30, degToRad(-295), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 9, textMat, 20, 50, 10, degToRad(-295), 15)};
 	loader.load( "js/obj/thelineup.js", callbackKey );
 
-	callbackKey = function(geometry) {createTextMesh(geometry, 10, textMat, -40, 75, 20, degToRad(-322), 15)};
+	callbackKey = function(geometry) {createTextMesh(geometry, 10, textMat, -40, 75, 10, degToRad(-322), 15)};
 	loader.load( "js/obj/pressboxshuttle.js", callbackKey );
 
 	var createLogoMesh = function( geometry, material )
@@ -603,12 +603,35 @@ function init() {
 
 function animate() {
 
-	//pointLight.position.x = Math.cos(theta) * 800;
-	//pointLight.position.z = Math.sin(theta) * 800;
-
-	for (var i = 0; i < planets.length; i++) {
-		//centerOrbit[i].rotation.z += planetTheta;
+	//Limit camera movement
+	if (camera.position.x > 1900) {
+		camera.position.x = 1900;
 	}
+
+	if (camera.position.x < -1900) {
+		camera.position.x = -1900;
+	}
+
+	if (camera.position.y > 1900) {
+		camera.position.y = 1900;
+	}
+
+	if (camera.position.y < -1900) {
+		camera.position.y = -1900;
+	}
+
+	if (camera.position.z > 1900) {
+		camera.position.z = 1900;
+	}
+
+	if (camera.position.z < -1900) {
+		camera.position.z = -1900;
+	}
+
+	//Loop for rotating all planets
+	// for (var i = 0; i < planets.length; i++) {
+	// 	centerOrbit[i].rotation.z += planetTheta;
+	// }
 
 	planets[0].rotation.set(degToRad(-35), theta, 0);
 	planets[1].rotation.set(0, 0, -theta * 2.5);
@@ -674,4 +697,13 @@ function degToRad(deg) {
 init();
 window.onload = function() {
 	animate();
+}
+
+function onWindowResize() {
+
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
 }

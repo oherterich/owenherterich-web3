@@ -57,7 +57,7 @@
     	$currentDate = date('d-m-Y H:i:s');
 
     	//Connect to database
-    	$mysql = mysql_connect('127.0.0.1', 'root', 'root');
+    	$mysql = mysql_connect('127.0.0.1', 'root', 'abc123');
 
     	// Check connection
 		// if (mysqli_connect_errno()){

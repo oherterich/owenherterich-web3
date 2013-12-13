@@ -1,6 +1,6 @@
 <?php
 	//Connect to database
-	$mysql = mysql_connect('127.0.0.1', 'root', 'root');
+	$mysql = mysql_connect('127.0.0.1', 'root', 'abc123');
 
 	// Check connection
 	if (mysqli_connect_errno()){
@@ -14,9 +14,12 @@
   // directory in your application on the server, such as php-sdk/
   require_once('facebook-php-sdk/src/facebook.php');
 
+  //local appId: 351013658375343
+  //loca appSecret: 5ba7e2031260e348231fd73299661f9e
+
   $config = array(
-    'appId' => '351013658375343',
-    'secret' => '5ba7e2031260e348231fd73299661f9e',
+    'appId' => '1400866013489701',
+    'secret' => '97eb8d60bbb5e91997f879303032886e',
     'fileUpload' => true,
     'allowSignedRequest' => false // optional but should be set to false for non-canvas apps
   );
