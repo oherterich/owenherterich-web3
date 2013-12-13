@@ -18,6 +18,8 @@ var planetNames = new Array(); //Array of titles for the different planets
 
 var logoTitle, logoDisc; //Meshes for the logo
 
+var satelliteOrbit; //stuff for satellite
+
 var centerOrbit = new Array(); //Main orbits for the planets
 var moonOrbit;
 
@@ -89,9 +91,33 @@ function init() {
 	hemiLight = new THREE.HemisphereLight(0xFFFFFF);
 	//scene.add(hemiLight);
 
-	/*********LOAD OBJ*********************/
+
+	/*********ADD SATELLITE TO SCENE*********************/
 	var loader = new THREE.JSONLoader();
- 
+
+	satelliteOrbit = new THREE.Object3D();
+
+	mainCube.add( satelliteOrbit ); //add another orbit for the satellite.
+
+	var createSatelliteMesh = function( geometry, material, pX, pY, pZ, rZ, s )
+	{
+		var zMat = material;
+	    var zmesh = new THREE.Mesh( geometry, zMat );
+	    zmesh.position.set( pX, pY, pZ );
+	    zmesh.scale.set( s, s, s );
+	    zmesh.rotation.set(0, 0, rZ);
+	    zmesh.overdraw = true;
+	    satelliteOrbit.add( zmesh );
+	};
+
+	var satelliteTex = THREE.ImageUtils.loadTexture("img/textures/spacejam/satellite.png");
+	var satelliteMat = new THREE.MeshPhongMaterial({ map: satelliteTex });
+
+	callbackKey = function(geometry) {createSatelliteMesh(geometry, satelliteMat, 0, 500, 0, degToRad(50), 60)};
+	loader.load( "js/obj/satellite.js", callbackKey );
+
+
+	/*********LOAD OBJ*********************/ 
 	var createTextMesh = function( geometry, i, material, pX, pY, pZ, rZ, s )
 	{
 		var zMat = material;
@@ -633,6 +659,13 @@ function animate() {
 	// 	centerOrbit[i].rotation.z += planetTheta;
 	// }
 
+	//Rotate the satellite
+	satelliteOrbit.rotation.set(theta * 0.2, 0, theta * 0.3);
+	if (satelliteOrbit.children[0] != null) {
+		satelliteOrbit.children[0].rotation.set(0, -theta * 0.6, theta);
+	}
+
+	//Rotation for the planets
 	planets[0].rotation.set(degToRad(-35), theta, 0);
 	planets[1].rotation.set(0, 0, -theta * 2.5);
 	planets[2].rotation.set(0, -theta * 0.2, 0);
