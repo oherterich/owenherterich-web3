@@ -3,7 +3,8 @@
   padding: 0; }
 
 body {
-  background-color: #111; }
+  background-color: #111;
+  font-family: Futura, Helvetica, Arial, sans-serif; }
 
 #three {
   width: 100%;
@@ -160,3 +161,22 @@ footer {
     footer a:hover {
       color: #888;
       transition: color 0.4s; }
+
+#loading {
+  width: 120px;
+  height: 30px;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  color: #eee;
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: normal; }
+
+.loader {
+  opacity: 1.0;
+  transition: opacity 0.7s; }
+
+.loader-hidden {
+  opacity: 0.0;
+  transition: opacity 1.0s; }

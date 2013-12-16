@@ -1,3 +1,11 @@
+var loading = function() {
+	var loader = document.getElementById("loading");
+	loader.classList.remove("loader");
+	loader.classList.add("loader-hidden");
+}
+
+
+/*******THREE JS**************************/
 var width = window.innerWidth,
 	height = window.innerHeight;
 
@@ -297,19 +305,6 @@ function init() {
 	planets[0].material.specularMap = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_spec.jpg");
 	planets[0].material.specular = new THREE.Color( 0x333333 );
 
-	//Add clouds to Earth;
-	var cloudTexture = new THREE.ImageUtils.loadTexture("img/textures/earth/earth_cloud_trans.jpg");
-	var cloudGeometry   = new THREE.SphereGeometry(40.1, 32, 32)
-	var cloudMaterial  = new THREE.MeshPhongMaterial({
-	  map     : cloudTexture,
-	  side        : THREE.DoubleSide,
-	  opacity     : 0.3,
-	  transparent : true,
-	  depthWrite  : false,
-	})
-	cloudMesh = new THREE.Mesh(cloudGeometry, cloudMaterial)
-	planets[0].add(cloudMesh)
-
 	moonOrbit = new THREE.Object3D();
 	planets[0].add( moonOrbit );
 
@@ -362,16 +357,22 @@ function init() {
 	var c = new THREE.Color( 0x0089EB ); //lightish blue
 	planets[2].material.color = c;
 
-	var saturnRing = new THREEx.Planets._RingGeometry(60, 80, 512);
-	var ringMaterial = new THREE.MeshPhongMaterial( { 
-		color: 0xE8235E,
-		side : THREE.DoubleSide,
-		transparent: true,
-		opacity: 0.5 
-	});
-	var ringMesh = new THREE.Mesh( saturnRing, ringMaterial );
-	ringMesh.rotation.set(Math.PI / 6, -Math.PI / 9, 0);
-	planets[2].add( ringMesh );
+
+	var createDiscMesh = function( geometry, material, i, pX, pY, pZ, rZ, s )
+	{
+		var zMat = material;
+	    var zmesh = new THREE.Mesh( geometry, zMat );
+	    zmesh.position.set( pX, pY, pZ );
+	    zmesh.scale.set( s, s, s );
+	    zmesh.rotation.set(90, 0, rZ);
+	    zmesh.overdraw = true;
+	    planets[i].add( zmesh );
+	};
+
+	var ringMat = new THREE.MeshPhongMaterial({ color: 0xE82337, transparent: true, opacity: 0.6 });
+
+	callbackKey = function(geometry) {createDiscMesh(geometry, ringMat, 2, 0, 0, 0, degToRad(-40), 15)};
+	loader.load( "js/obj/disc.js", callbackKey );
 	/***************************************************************************/
 	/***************************************************************************/
 	/***************************************************************************/
@@ -516,16 +517,9 @@ function init() {
 	var c = new THREE.Color( 0xED1A48 );
 	planets[9].material.color = c;
 
-	var saturnRing = new THREEx.Planets._RingGeometry(60, 80, 256);
-	var ringMaterial = new THREE.MeshPhongMaterial( { 
-		color: 0x18E7F2,
-		side : THREE.DoubleSide,
-		transparent: true,
-		opacity: 0.5 
-	});
-	var ringMesh = new THREE.Mesh( saturnRing, ringMaterial );
-	ringMesh.rotation.set(Math.PI / 6, -Math.PI / 9, 0);
-	planets[9].add( ringMesh );
+	var ringMat2 = new THREE.MeshPhongMaterial({ color: 0x18E7F2, transparent: true, opacity: 0.6 });
+	callbackKey = function(geometry) {createDiscMesh(geometry, ringMat2, 9, 0, 0, 0, degToRad(-40), 15)};
+	loader.load( "js/obj/disc.js", callbackKey );
 	/***************************************************************************/
 	/***************************************************************************/
 	/***************************************************************************/
@@ -668,14 +662,14 @@ function animate() {
 	//Rotation for the planets
 	planets[0].rotation.set(degToRad(-35), theta, 0);
 	planets[1].rotation.set(0, 0, -theta * 2.5);
-	planets[2].rotation.set(0, -theta * 0.2, 0);
+	planets[2].rotation.set(0, 0, -theta * 0.2);
 	planets[3].rotation.set(theta * 0.5, 0, 0);
 	planets[4].rotation.set(-theta * 0.8, degToRad(-20), degToRad(-50));
 	planets[5].rotation.set( 0, theta * 0.4, 0 );
 	centerOrbit[6].children[2].rotation.set(0,0,theta * 0.1);
 	planets[7].rotation.set(0, 0, theta);
 	planets[8].rotation.set(theta * 0.5, 0, degToRad(-70));
-	planets[9].rotation.set(0, theta * 0.7, 0);
+	planets[9].rotation.set(0, 0, theta * 0.7);
 	if (centerOrbit[10].children[2] != null){
 		centerOrbit[10].children[2].rotation.set(theta*0.2,theta*0.3,0);
 	}
@@ -729,6 +723,7 @@ function degToRad(deg) {
 
 init();
 window.onload = function() {
+	loading();
 	animate();
 }
 
