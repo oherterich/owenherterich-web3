@@ -96,13 +96,14 @@ textarea {
  *  { margin: 0; padding: 0;}
 
  body {
-    font-family: Futura, Helvetica, Arial, sans-serif;
-    background: url("../img/sos.png");
+    font-family: "Comic Sans MS", cursive;
+    background: url("../img/otters.jpg");
  }
 
  #wrapper {
     width: 960px;
     margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.7);
  }
 
  section {
@@ -110,10 +111,12 @@ textarea {
  }
 
  h1 {
+    color: red;
     font-size: 4.3em;
  }
 
  h3 {
+    color: orange;
     display: inline;
 
     padding: 10px 12px;
@@ -130,7 +133,7 @@ textarea {
  }
 
  h3#verbWord {
-    color: #DD4B40;
+    color: purple;
  }
 
  /******************** BUTTONS *********************/
